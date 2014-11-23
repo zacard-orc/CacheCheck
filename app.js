@@ -10,17 +10,34 @@ var users = require('./routes/users');
 
 var app = express();
 
+
+
+app.set(function(){ app.use(yourheader)});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'),{
+    maxAge:'1d',
+    setHeaders: function (res, path) {
+        res.set('X-Powered-By', 'Hello');
+        res.set('x-timestamp', Date.now());
+    }
+}));
+
+app.use(function (req, res, next) {
+    res.setHeader('X-Powered-By', 'ABC');
+    res.setHeader('Cache-contral','max-age=315360000');
+    //console.log('Time: %d', Date.now());
+    next();
+});
 
 app.use('/', routes);
 app.use('/users', users);

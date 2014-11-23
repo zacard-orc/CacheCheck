@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/javascripts/x.js"></script>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p><a href="/news">Welcome to <%= title %></a></p>
-    <p id="tt1"> </p>
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<p id="tt1"> </p>
+<p><a href="/">Goback Home</a></p>
 
-    <script type="text/javascript">
-        var c=document.getElementById("tt1");
-        c.innerText=add(10,20);
-    </script>
-  </body>
+
+<script type="text/javascript">
+    var c=document.getElementById("tt1");
+    c.innerText=add(10,20);
+</script>
+</body>
 </html>
