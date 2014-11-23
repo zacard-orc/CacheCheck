@@ -1,9 +1,12 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var RedisStore = require('connect-redis')(session);
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -23,7 +26,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('linly'));
 app.use(express.static(path.join(__dirname, 'public'),{
     maxAge:'1d',
     setHeaders: function (res, path) {
@@ -31,6 +34,21 @@ app.use(express.static(path.join(__dirname, 'public'),{
         res.set('x-timestamp', Date.now());
     }
 }));
+
+app.use(session({
+    store: new RedisStore({
+        host: "192.168.137.202",
+        port: 6379
+    }),
+    resave:false,
+    saveUninitialized:false,
+    secret: 'linly'
+}));
+
+
+
+
+
 
 app.use(function (req, res, next) {
     res.setHeader('X-Powered-By', 'ABC');
@@ -41,6 +59,16 @@ app.use(function (req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/redisses',function(req,res){
+    req.session.user = 'lizhengfu';
+    res.send(req.session.user);
+});
+
+app.get('/checkses',function(req,res){
+    //console.log(req.session.user);
+    res.send(req.session.user+':sesss');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
