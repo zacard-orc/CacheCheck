@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>redis_info</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/x.js"></script>
+</head>
+<body>
+<h1>redis_info</h1>
+<% if (restxt.length>2) { %>
+<% for(var i=0;i<restxt.length;i++){ %>
+<li><%= JSON.stringify(restxt[i]) %></li>
+<% }%>
+<% }%>
+</body>
+</html>

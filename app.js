@@ -6,7 +6,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var RedisStore = require('connect-redis')(session);
-
+var redis = require('redis');
+var client = redis.createClient(6379,'192.168.137.202');
+var async=require("async");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -68,6 +70,24 @@ app.get('/redisses',function(req,res){
 app.get('/checkses',function(req,res){
     //console.log(req.session.user);
     res.send(req.session.user+':sesss');
+});
+
+app.get('/showredis',function(req,res){
+    client.send_command("keys",['*'],function (err, reply) {
+
+        async.mapSeries(reply,function(item,cb){
+           console.log(item);
+           client.get(item,function(err,xreplay){
+               var a={};
+               a[item]=JSON.parse(xreplay);
+               cb(null,a);
+           });
+        },function(err,xres){
+            console.log(xres);
+            res.render('redis_info',{restxt:xres});
+        });
+
+    });
 });
 
 // catch 404 and forward to error handler
