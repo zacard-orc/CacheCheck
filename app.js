@@ -63,12 +63,15 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.get('/redisses',function(req,res){
-    req.session.user = 'lizhengfu';
+    req.session.user = 'linly';
+    console.log(req.session);
+    res.cookie('name', 'tobi', { domain: '', path: '/admin', secure: true });
     res.send(req.session.user);
 });
 
 app.get('/checkses',function(req,res){
     //console.log(req.session.user);
+    console.log(req.cookies)
     res.send(req.session.user+':sesss');
 });
 

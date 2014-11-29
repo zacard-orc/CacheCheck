@@ -1,7 +1,48 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black
 }
+h1,p,th,td
+{
+    font-family:"Microsoft YaHei";
+    color:#ffffff;
+}
+
+tr,td
+{
+    font-family:"Microsoft YaHei";
+    height:30px;
+    width:100px;
+}
+td:hover
+{
+    background-color:dodgerblue;
+    color: #ffffff;
+    font-weight:bold;
+}
+
+div
+{
+    font-family:"Microsoft YaHei";
+    font:"Lucida Grande";
+    font-weight:bold;
+    height:25px;
+    line-height:25px;
+    background-color: red;
+    text-align: center;
+    border: 1px solid #000000;
+    color:#000000;
+    -webkit-border-radius: 3px;   /* Webkit browsers */
+}
+
+div.d_dns {background:-webkit-linear-gradient(left,cadetblue,royalblue);}
+div.d_conn {background:-webkit-linear-gradient(left,limegreen,forestgreen);}
+div.d_send {background:-webkit-linear-gradient(left,Gold ,darkorange);}
+div.d_wait {background:-webkit-linear-gradient(left,Salmon,Tomato);}
+div.d_recv {background:-webkit-linear-gradient(left,Fuchsia   ,DeepPink  );}
+div.d_geo {background:-webkit-linear-gradient(left,orangered,Red );}
+
 
 a {
   color: #00B7FF;

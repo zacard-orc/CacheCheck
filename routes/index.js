@@ -12,4 +12,8 @@ router.get('/news', function(req, res) {
     res.render('news', { title: 'Express' });
 });
 
+router.get('/htable', function(req, res) {
+    res.render('htable', { title: 'HTable' });
+});
+
 module.exports = router;

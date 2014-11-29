@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>redis_info</h1>
-<% if (restxt.length>2) { %>
+<% if (restxt.length>0) { %>
 <% for(var i=0;i<restxt.length;i++){ %>
 <li><%= JSON.stringify(restxt[i]) %></li>
 <% }%>
