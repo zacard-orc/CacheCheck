@@ -12,9 +12,11 @@ h1,p,th,td
 tr,td
 {
     font-family:"Microsoft YaHei";
-    height:30px;
-    width:100px;
+    height:20px;
+    width:50px;
 }
+
+
 td:hover
 {
     background-color:dodgerblue;

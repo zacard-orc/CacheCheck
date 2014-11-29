@@ -16,4 +16,8 @@ router.get('/htable', function(req, res) {
     res.render('htable', { title: 'HTable' });
 });
 
+router.get('/hv', function(req, res) {
+    res.render('hview', { });
+});
+
 module.exports = router;
