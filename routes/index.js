@@ -52,6 +52,19 @@ router.get('/htable', function(req, res) {
                 "t_recv":7.2
             },
             "geo":801
+        },
+        {
+            "name":"成都",
+            "os":"Maxthon",
+            "timing":
+            {
+                "t_dns":22.3,
+                "t_conn":12.5,
+                "t_send":6.8,
+                "t_wait":13.7,
+                "t_recv":3.2
+            },
+            "geo":399
         }
     ];
     var hardata=[
@@ -62,6 +75,11 @@ router.get('/htable', function(req, res) {
             "detail":[
                 {"url":"http://www.ctrip.com/1.png","delay":2.34,"stime":"2014-11:30 10:50:50:323"},
                 {"url":"http://www.ctrip.com/2.png","delay":7.23,"stime":"2014-11:30 10:50:58:923"},
+            ],
+            "headers":
+            [
+                {"XFF":"1.1.1.1"},
+                {"XFF":"2.2.2.2"}
             ]
         },
         {
@@ -72,8 +90,13 @@ router.get('/htable', function(req, res) {
                 {"url":"http://www.ctrip.com/1.png","delay":5.93,"stime":"2014-11:30 10:50:50:323"},
                 {"url":"http://www.ctrip.com/2.png","delay":3.43,"stime":"2014-11:30 10:50:55:323"},
                 {"url":"http://www.ctrip.com/3.png","delay":6.63,"stime":"2014-11:30 10:50:59:323"},
-
-            ]
+            ],
+            "headers":
+                [
+                    {"XFF":"3.3.3.3"},
+                    {"XFF":"4.4.4.4"},
+                    {"XFF":"5.5.5.5"}
+                ]
         }
     ];
     res.render('htable', { title: 'HTable', restxt:xdata,ggtxt:hardata});

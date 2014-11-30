@@ -7,6 +7,28 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
     <script language="javascript">
+
+        /*
+        $(document).ready(function(){
+                $("p.txtp").hide();
+        });
+        */
+
+        //自定义的比较函数
+        function sortByAsend(o1,o2)
+        {
+            if( (o1.obj_compare)>(o2.obj_compare) ){return 1}
+            else if( (o1.obj_compare)==(o2.obj_compare) ){return 0}
+            else{return -1}
+        }
+
+        function sortByDsend(o1,o2)
+        {
+            if( (o1.obj_compare)>(o2.obj_compare) ){return -1}
+            else if( (o1.obj_compare)==(o2.obj_compare) ){return 0}
+            else{return 1}
+        }
+
         //onload 加载完毕后，收缩所有子表格。案例为8行【标题/ Master+SON*2 / Master+SON*3】
         function initTable(){
             var tableRows=document.getElementById("t_main").rows;
@@ -32,6 +54,42 @@
                         tableRows[j].style.display="";
                         tid.cells[0].firstChild.data="-";
                     }
+                }
+            }
+        }
+
+        function sortTable(tid){
+            var tableRows=document.getElementById("t_curl").rows;
+            var id_col=tid.id.split("-")[1];
+            //console.log(id_col);
+            //console.log(tableRows[1].cells[2].innerText);
+            var tmp_data=[];
+            for(var i=1;i<tableRows.length;i++)
+            {
+                var tmp_o={}
+                tmp_o["obj_compare"]=tableRows[i].cells[id_col].innerText;
+                tmp_o["obj_string"]=tableRows[i].innerHTML;
+                tmp_data.push(tmp_o);
+            }
+
+            //console.log(tmp_data);
+            if(tableRows[1].cells[id_col].innerText >= tableRows[tableRows.length-1].cells[id_col].innerText)
+            {
+                //如果现在是降序，则点击下后变为升序
+                tmp_data.sort(sortByAsend);
+                for(var i=1;i<tableRows.length;i++)
+                {
+                    console.log(tmp_data[i-1].obj_string);
+                    tableRows[i].innerHTML=tmp_data[i-1].obj_string
+                }
+            } else
+            {
+                //如果现在是升序，则点击下后变为降序
+                tmp_data.sort(sortByDsend);
+                for(var i=1;i<tableRows.length;i++)
+                {
+                    console.log(tmp_data[i-1].obj_string);
+                    tableRows[i].innerHTML=tmp_data[i-1].obj_string
                 }
             }
         }

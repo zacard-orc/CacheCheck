@@ -1,14 +1,13 @@
 <%- include header %>
-
 <h1>测试 CDN CurlTable</h1>
 <%- include ills %>
 <br><br>
 <table id="t_curl">
     <tr>
-        <th class="title">CdnIP</th>
-        <th class="title">OS</th>
-        <th class="title">Timings</th>
-        <th class="title" style="width: 200px">GEO</th>
+        <th id="ct-0" class="title" onclick="sortTable(this)">CdnIP</th>
+        <th id="ct-1" class="title" onclick="sortTable(this)">OS</th>
+        <th id="ct-2" class="title" onclick="sortTable(this)">Timings</th>
+        <th id="ct-3" class="title" style="width: 200px" onclick="sortTable(this)">GEO</th>
     </tr>
     <% for(var i=0;i<restxt.length;i++){ %>
     <% restxt.length %>
@@ -16,11 +15,11 @@
         <td class="txt"><%= restxt[i].name %></td>
         <td class="txt"><%= restxt[i].os %></td>
         <td class="timing">
-            <div class="d_dns" style="width:<%= restxt[i].timing.t_dns*10 %>px;float:left;"><%= restxt[i].timing.t_dns %></div>
-            <div class="d_conn" style="width:<%= restxt[i].timing.t_conn*10 %>px;float:left;"><%= restxt[i].timing.t_conn %></div>
-            <div class="d_send" style="width:<%= restxt[i].timing.t_send*10 %>px;float:left;"><%= restxt[i].timing.t_send %></div>
-            <div class="d_wait" style="width:<%= restxt[i].timing.t_wait*10 %>;float:left;"><%= restxt[i].timing.t_wait %></div>
-            <div class="d_recv" style="width:<%= restxt[i].timing.t_recv*10 %>px;float:left;"><%= restxt[i].timing.t_recv %></div>                                                                                         <!-- 3333 -->
+            <div class="d_dns" style="width:<%= restxt[i].timing.t_dns*10 %>px;float:left;"><%= restxt[i].timing.t_dns %>s</div>
+            <div class="d_conn" style="width:<%= restxt[i].timing.t_conn*10 %>px;float:left;"><%= restxt[i].timing.t_conn %>s</div>
+            <div class="d_send" style="width:<%= restxt[i].timing.t_send*10 %>px;float:left;"><%= restxt[i].timing.t_send %>s</div>
+            <div class="d_wait" style="width:<%= restxt[i].timing.t_wait*10 %>;float:left;"><%= restxt[i].timing.t_wait %>s</div>
+            <div class="d_recv" style="width:<%= restxt[i].timing.t_recv*10 %>px;float:left;"><%= restxt[i].timing.t_recv %>s</div>                                                                                         <!-- 3333 -->
         </td>
         <td class="geo">
             <div class="d_geo" style="width:<%= restxt[i].geo*0.1 %>px;float:left;"><%= restxt[i].geo%></div>
@@ -50,11 +49,17 @@
         </tr>
         <% for(var j=0;j<ggtxt[i].detail.length;j++){ %>
             <tr class="txtdd" id="t<%=i%>-<%= j%>">
-                <td style="height: 13px"></td>
-                <td class="txtdd"><%= ggtxt[i].detail[j].stime %></td>
-                <td class="txtdd"><%= ggtxt[i].detail[j].url %></td>
-                <td class="txtdd"><%= ggtxt[i].detail[j].delay %></td>
+                <th style="height: 13px">+</th>
+                <th class="txtdd"><%= ggtxt[i].detail[j].stime %></th>
+                <th class="txtdd"><%= ggtxt[i].detail[j].url %></th>
+                <th class="txtdd"><%= ggtxt[i].detail[j].delay %></th>
             </tr>
+            <% for(var k=0;k<ggtxt[i].headers.length;k++) {%>
+                <tr class="txtdd" id="t<%=i%>-<%= j%>-<%= k%>">
+                <td style="height: 13px">+</td>
+                <td class="txtdd"><%= ggtxt[i].headers[k].XFF %></td>
+                </tr>
+            <% }%>
         <% }%>
     <%}%>
 </table>

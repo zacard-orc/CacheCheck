@@ -8,6 +8,20 @@ h1,p,th
     font-family:"Microsoft YaHei";
     color:#ffffff;
 }
+p.txtp
+{
+    line-height: 3px;
+    font-size: 13px;
+    color: indianred;
+}
+
+p.txtp:hover
+{
+    line-height: 13px;
+    background-color:dodgerblue;
+    color: #ffffff;
+    font-weight:bold;
+}
 
 th.title
 {
@@ -21,6 +35,8 @@ th.txt:hover
     color: #ffffff;
     font-weight:bold;
 }
+th.txtdd { width:150px;color: lawngreen;height:5px;font-size: 13px;text-align: left;font-weight: normal}
+
 
 tr,td
 {
@@ -31,7 +47,7 @@ tr,td
 tr.txtdd { height:13px; }
 
 td.txt { width:150px; }
-td.txtdd { width:150px;color: lawngreen;height:5px;font-size: 13px}
+td.txtdd { width:150px;color: lawngreen;height:5px;font-size: 13px;text-align:left;}
 td.geo { width:200px; }
 td.timing { width:1000px; }
 
