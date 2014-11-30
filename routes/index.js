@@ -20,4 +20,9 @@ router.get('/hv', function(req, res) {
     res.render('hview', { });
 });
 
+router.get('/hext', function(req, res) {
+    res.render('hext', {title:'Table Extend' });
+});
+
+
 module.exports = router;

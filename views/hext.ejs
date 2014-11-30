@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title><%= title %></title>
+</head>
+<script language="javascript">
+    function initTable(){
+        var tableRows=tb.rows;
+        for(var i=0;i<tableRows.length;i++){
+            if(tableRows[i].id.indexOf("-")>0)
+                tableRows[i].style.display="none";
+        }
+    }
+    function showRow(tid){
+        var tableRows=tb.rows;
+        for(var j=0;j<tableRows.length;j++){
+            var s=tableRows[j].id;
+            var tmp=tid.id+"-";
+            if(s.indexOf(tmp)!=-1 && s!=tid.id){
+                //alert(s);
+                if(tableRows[j].style.display==""){
+                    tableRows[j].style.display="none";
+                    tid.cells[0].firstChild.data="+";
+                }
+                else{
+                    tableRows[j].style.display="";
+                    tid.cells[0].firstChild.data="-";
+                }
+            }
+        }
+    }
+</script>
+
+<body onLoad="initTable()">
+<table width="10%" cellpadding="0" cellspacing="0" id="tb"
+       style="border-collapse: collapse" border="0" bordercolor="#111111">
+    <tr id="t0" onClick="showRow(this)">
+        <th align="left" style="cursor: hand;" width="20%">
+            +
+        </th>
+        <th align="left" scope="col" width="80%">
+            标题1
+        </th>
+    </tr>
+    <tr id="t0-1">
+        <td></td>
+        <td>1</td>
+    </tr>
+    <tr id="t0-2">
+        <td></td>
+        <td>2</td>
+    </tr>
+
+    <tr id="t3" onClick="showRow(this);">
+        <th align="left" style="cursor: hand;">
+            +
+        </th>
+        <th align="left" scope="col">
+            标题2
+        </th>
+    </tr>
+    <tr id="t3-1">
+        <td>
+        </td>
+        <td>
+            3
+        </td>
+    </tr>
+</table>
+</body>
+</html>
+

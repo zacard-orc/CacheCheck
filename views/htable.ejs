@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <title>表格H5测试</title>
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src='/javascripts/bootstrap.min.js'></script>
-    <script src='/javascripts/jquery-1.11.1.min.js'></script>
-</head>
+
 <body bgcolor="#000000">
 <h1>测试TABLE</h1>
 <div style="background-color:#000000;color:#ffffff;
@@ -21,19 +11,19 @@
 <div class="d_wait" style="width:110px;float:left;">WAIT</div>
 <div class="d_recv" style="width:110px;float:left;">RECV</div>
 <div class="d_geo" style="width:200px;float:left;">GEO</div>
-
-<table class="table">
+<br>
+<table>
     <thead>
     <tr>
-        <th>CdnIP</th>
-        <th>Timings</th>
-        <th>Wheter</th>
+        <th class="title">CdnIP</th>
+        <th class="title">Timings</th>
+        <th class="title">Wheter</th>
     </tr>
     <tr>
-        <td>9999上海</td>
-        <td>Sunny</td>
+        <td class="txt">9999上海</td>
+        <td class="txt">Sunny</td>
 
-        <td style="width: 200px">
+        <td class="timing" style="width: 200px">
             <div class="d_dns" style="width:40px;float:left;">1.23</div>
             <div class="d_conn" style="width:70px;float:left;">3.23</div>
             <div class="d_send" style="width:30px;float:left;">2.8</div>
@@ -42,10 +32,10 @@
         </td>
     </tr>
     <tr>
-        <td>8888广州</td>
-        <td>XXCV</td>
+        <td class="txt">8888广州</td>
+        <td class="txt">XXCV</td>
 
-        <td>
+        <td  class="timing" >
             <div class="d_dns" style="width:40px;float:left;">1.23</div>
             <div class="d_conn" style="width:30px;float:left;">3.23</div>
             <div class="d_send" style="width:30px;float:left;">2.8</div>
@@ -54,10 +44,10 @@
         </td>
     </tr>
     <tr>
-        <td>7777成都</td>
-        <td>554</td>
+        <td class="txt">7777成都</td>
+        <td class="txt">554</td>
 
-        <td>
+        <td  class="timing" >
             <div class="d_dns" style="width:100px;float:left;">1.23</div>
             <div class="d_conn" style="width:140px;float:left;">3.23</div>
             <div class="d_send" style="width:90px;float:left;">2.8</div>

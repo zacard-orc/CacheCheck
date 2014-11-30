@@ -3,19 +3,33 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black
 }
-h1,p,th,td
+h1,p,th
 {
     font-family:"Microsoft YaHei";
     color:#ffffff;
 }
 
+th.title
+{
+    border-bottom: 2px solid #ffffff;
+}
+
 tr,td
 {
     font-family:"Microsoft YaHei";
-    height:20px;
-    width:50px;
+    height:30px;
+    color:#ffffff;
 }
 
+td.txt
+{
+    width:150px;
+}
+
+td.timing
+{
+    width:1000px;
+}
 
 td:hover
 {

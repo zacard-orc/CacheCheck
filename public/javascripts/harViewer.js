@@ -1,7 +1,13 @@
 require.def("core/lib", ["core/trace"], function(a) {
     var b = {},
         c = navigator.userAgent.toLowerCase();
-    b.isFirefox = /firefox/.test(c), b.isOpera = /opera/.test(c), b.isWebkit = /webkit/.test(c), b.isSafari = /webkit/.test(c), b.isIE = /msie/.test(c) && !/opera/.test(c), b.isIE6 = /msie 6/i.test(navigator.appVersion), b.browserVersion = (c.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, "0"])[1], b.isIElt8 = b.isIE && b.browserVersion - 0 < 8, b.extend = function d(a, c) {
+        b.isFirefox = /firefox/.test(c),
+        b.isOpera = /opera/.test(c),
+        b.isWebkit = /webkit/.test(c),
+        b.isSafari = /webkit/.test(c),
+            b.isIE = /msie/.test(c) && !/opera/.test(c),
+            b.isIE6 = /msie 6/i.test(navigator.appVersion),
+            b.browserVersion = (c.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, "0"])[1], b.isIElt8 = b.isIE && b.browserVersion - 0 < 8, b.extend = function d(a, c) {
         var d = {};
         b.append(d, a), b.append(d, c);
         return d
