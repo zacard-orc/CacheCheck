@@ -39,9 +39,44 @@ router.get('/htable', function(req, res) {
                 "t_recv":8.2
             },
             "geo":571
+        },
+        {
+            "name":"东京",
+            "os":"FireFox",
+            "timing":
+            {
+                "t_dns":11.3,
+                "t_conn":12.5,
+                "t_send":7.8,
+                "t_wait":9.7,
+                "t_recv":7.2
+            },
+            "geo":801
         }
-    ]
-    res.render('htable', { title: 'HTable', restxt:xdata});
+    ];
+    var hardata=[
+        {
+            "xtime":"2014-11-30 10:30:00",
+            "site":"www.baidu.com",
+            "timing":15.8,
+            "detail":[
+                {"url":"http://www.ctrip.com/1.png","delay":2.34,"stime":"2014-11:30 10:50:50:323"},
+                {"url":"http://www.ctrip.com/2.png","delay":7.23,"stime":"2014-11:30 10:50:58:923"},
+            ]
+        },
+        {
+            "xtime":"2014-11-30 11:30:00",
+            "site":"www.baidu.com",
+            "timing":9.2,
+            "detail":[
+                {"url":"http://www.ctrip.com/1.png","delay":5.93,"stime":"2014-11:30 10:50:50:323"},
+                {"url":"http://www.ctrip.com/2.png","delay":3.43,"stime":"2014-11:30 10:50:55:323"},
+                {"url":"http://www.ctrip.com/3.png","delay":6.63,"stime":"2014-11:30 10:50:59:323"},
+
+            ]
+        }
+    ];
+    res.render('htable', { title: 'HTable', restxt:xdata,ggtxt:hardata});
 });
 
 

@@ -1,14 +1,14 @@
 <%- include header %>
-<h1>测试TABLE</h1>
+
+<h1>测试 CDN CurlTable</h1>
 <%- include ills %>
 <br><br>
-<table>
+<table id="t_curl">
     <tr>
         <th class="title">CdnIP</th>
         <th class="title">OS</th>
         <th class="title">Timings</th>
         <th class="title" style="width: 200px">GEO</th>
-
     </tr>
     <% for(var i=0;i<restxt.length;i++){ %>
     <% restxt.length %>
@@ -23,13 +23,42 @@
             <div class="d_recv" style="width:<%= restxt[i].timing.t_recv*10 %>px;float:left;"><%= restxt[i].timing.t_recv %></div>                                                                                         <!-- 3333 -->
         </td>
         <td class="geo">
-            <div class="d_geo" style="width:<%= restxt[i].geo/10 %>px;float:left;"><%= restxt[i].geo%></div>
+            <div class="d_geo" style="width:<%= restxt[i].geo*0.1 %>px;float:left;"><%= restxt[i].geo%></div>
         </td>
-
     </tr>
     <% }%>
 </table>
 <br>
+<h1>测试 Har Table</h1>
+<table id="t_main">
+    <tr>
+        <th class="title" style="width: 10px"></th>
+        <th class="title">DateTIme</th>
+        <th class="title">Sitmon</th>
+        <th class="title">Timing</th>
+        <th class="title">G_Timing</th>
+    </tr>
+    <% for(var i=0;i<ggtxt.length;i++){ %>
+        <tr id="t<%= i%>" onClick="showRow(this)">
+            <th style="cursor: hand;">+</th>
+            <th class="txt" align="left" scope="col"><%= ggtxt[i].xtime%></th>
+            <th class="txt" align="left" scope="col"><%= ggtxt[i].site%></th>
+            <th class="txt" align="left" scope="col"><%= ggtxt[i].timing%></th>
+            <th class="txt" scope="col" style="width: 500px">
+                <div class="d_geo" style="width:<%= ggtxt[i].timing*15 %>px;float:left;"><%= ggtxt[i].timing %></div>
+            </th>
+        </tr>
+        <% for(var j=0;j<ggtxt[i].detail.length;j++){ %>
+            <tr class="txtdd" id="t<%=i%>-<%= j%>">
+                <td style="height: 13px"></td>
+                <td class="txtdd"><%= ggtxt[i].detail[j].stime %></td>
+                <td class="txtdd"><%= ggtxt[i].detail[j].url %></td>
+                <td class="txtdd"><%= ggtxt[i].detail[j].delay %></td>
+            </tr>
+        <% }%>
+    <%}%>
+</table>
+
 <%- include tail %>
 
 

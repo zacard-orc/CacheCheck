@@ -6,5 +6,35 @@
     <title>表格H5测试</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <script language="javascript">
+        //onload 加载完毕后，收缩所有子表格。案例为8行【标题/ Master+SON*2 / Master+SON*3】
+        function initTable(){
+            var tableRows=document.getElementById("t_main").rows;
+            for(var i=0;i<tableRows.length;i++){
+                if(tableRows[i].id.indexOf("-")>0)
+                    tableRows[i].style.display="none";
+            }
+        }
+
+        //onload 加载完毕后，点'+' 展开所有子表格，点'-'，收缩所有子表格 【标题/ Master+SON*2 / Master+SON*3】
+        function showRow(tid){
+            var tableRows=document.getElementById("t_main").rows;
+            for(var j=0;j<tableRows.length;j++){
+                var s=tableRows[j].id;
+                var tmp=tid.id+"-";
+                if(s.indexOf(tmp)!=-1 && s!=tid.id){
+                    //alert(s);
+                    if(tableRows[j].style.display==""){
+                        tableRows[j].style.display="none";
+                        tid.cells[0].firstChild.data="+";
+                    }
+                    else{
+                        tableRows[j].style.display="";
+                        tid.cells[0].firstChild.data="-";
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body bgcolor="#000000">
+<body bgcolor="#000000" onload="initTable()" >
