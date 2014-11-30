@@ -21,15 +21,9 @@ tr,td
     color:#ffffff;
 }
 
-td.txt
-{
-    width:150px;
-}
-
-td.timing
-{
-    width:1000px;
-}
+td.txt { width:150px; }
+td.geo { width:200px; }
+td.timing { width:1000px; }
 
 td:hover
 {

@@ -1,63 +1,35 @@
-
-<body bgcolor="#000000">
+<%- include header %>
 <h1>测试TABLE</h1>
-<div style="background-color:#000000;color:#ffffff;
-            text-align: left;float:left;width:200px;
-            line-height:22px;font-size: 15px">
-    Welcome to 表格测试</div>
-<div class="d_dns" style="width:110px;float:left;">DNS</div>
-<div class="d_conn" style="width:110px;float:left;">CONNECTION</div>
-<div class="d_send" style="width:110px;float:left;">SEND</div>
-<div class="d_wait" style="width:110px;float:left;">WAIT</div>
-<div class="d_recv" style="width:110px;float:left;">RECV</div>
-<div class="d_geo" style="width:200px;float:left;">GEO</div>
-<br>
+<%- include ills %>
+<br><br>
 <table>
-    <thead>
     <tr>
         <th class="title">CdnIP</th>
+        <th class="title">OS</th>
         <th class="title">Timings</th>
-        <th class="title">Wheter</th>
-    </tr>
-    <tr>
-        <td class="txt">9999上海</td>
-        <td class="txt">Sunny</td>
+        <th class="title" style="width: 200px">GEO</th>
 
-        <td class="timing" style="width: 200px">
-            <div class="d_dns" style="width:40px;float:left;">1.23</div>
-            <div class="d_conn" style="width:70px;float:left;">3.23</div>
-            <div class="d_send" style="width:30px;float:left;">2.8</div>
-            <div class="d_wait" style="width:100px;float:left;">15.22</div>
-            <div class="d_recv" style="width:40px;float:left;">4.3</div>
-        </td>
     </tr>
+    <% for(var i=0;i<restxt.length;i++){ %>
+    <% restxt.length %>
     <tr>
-        <td class="txt">8888广州</td>
-        <td class="txt">XXCV</td>
-
-        <td  class="timing" >
-            <div class="d_dns" style="width:40px;float:left;">1.23</div>
-            <div class="d_conn" style="width:30px;float:left;">3.23</div>
-            <div class="d_send" style="width:30px;float:left;">2.8</div>
-            <div class="d_wait" style="width:400px;float:left;">15.22</div>
-            <div class="d_recv" style="width:100px;float:left;">4.3</div>
+        <td class="txt"><%= restxt[i].name %></td>
+        <td class="txt"><%= restxt[i].os %></td>
+        <td class="timing">
+            <div class="d_dns" style="width:<%= restxt[i].timing.t_dns*10 %>px;float:left;"><%= restxt[i].timing.t_dns %></div>
+            <div class="d_conn" style="width:<%= restxt[i].timing.t_conn*10 %>px;float:left;"><%= restxt[i].timing.t_conn %></div>
+            <div class="d_send" style="width:<%= restxt[i].timing.t_send*10 %>px;float:left;"><%= restxt[i].timing.t_send %></div>
+            <div class="d_wait" style="width:<%= restxt[i].timing.t_wait*10 %>;float:left;"><%= restxt[i].timing.t_wait %></div>
+            <div class="d_recv" style="width:<%= restxt[i].timing.t_recv*10 %>px;float:left;"><%= restxt[i].timing.t_recv %></div>                                                                                         <!-- 3333 -->
         </td>
-    </tr>
-    <tr>
-        <td class="txt">7777成都</td>
-        <td class="txt">554</td>
-
-        <td  class="timing" >
-            <div class="d_dns" style="width:100px;float:left;">1.23</div>
-            <div class="d_conn" style="width:140px;float:left;">3.23</div>
-            <div class="d_send" style="width:90px;float:left;">2.8</div>
-            <div class="d_wait" style="width:50px;float:left;">15.22</div>
-            <div class="d_recv" style="width:30px;float:left;">4.3</div>
+        <td class="geo">
+            <div class="d_geo" style="width:<%= restxt[i].geo/10 %>px;float:left;"><%= restxt[i].geo%></div>
         </td>
+
     </tr>
-    </thead>
+    <% }%>
 </table>
+<br>
+<%- include tail %>
 
 
-</body>
-</html>
