@@ -38,7 +38,7 @@
         <th class="title">G_Timing</th>
     </tr>
     <% for(var i=0;i<ggtxt.length;i++){ %>
-        <tr id="t<%= i%>" onClick="showRow(this)">
+        <tr id="t<%= i%>" onClick="showRowStep(this)">  <!--展开分步子行 -->
             <th style="cursor: hand;">+</th>
             <th class="txt" align="left" scope="col"><%= ggtxt[i].xtime%></th>
             <th class="txt" align="left" scope="col"><%= ggtxt[i].site%></th>
@@ -48,7 +48,7 @@
             </th>
         </tr>
         <% for(var j=0;j<ggtxt[i].detail.length;j++){ %>
-            <tr class="txtdd" id="t<%=i%>-<%= j%>">
+            <tr class="txtdd" id="t<%=i%>-<%= j%>" onclick="showRowEle(this)">
                 <th style="height: 13px">+</th>
                 <th class="txtdd"><%= ggtxt[i].detail[j].stime %></th>
                 <th class="txtdd"><%= ggtxt[i].detail[j].url %></th>
@@ -56,8 +56,9 @@
             </tr>
             <% for(var k=0;k<ggtxt[i].headers.length;k++) {%>
                 <tr class="txtdd" id="t<%=i%>-<%= j%>-<%= k%>">
-                <td style="height: 13px">+</td>
+                <td style="height: 13px"> </td>
                 <td class="txtdd"><%= ggtxt[i].headers[k].XFF %></td>
+                <td class="txtdd"><%= ggtxt[i].headers[k].Cache %></td>
                 </tr>
             <% }%>
         <% }%>

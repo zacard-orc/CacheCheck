@@ -35,17 +35,21 @@
             for(var i=0;i<tableRows.length;i++){
                 if(tableRows[i].id.indexOf("-")>0)
                     tableRows[i].style.display="none";
+                    //console.log(i+" "+tableRows[i].style.display)
             }
         }
 
         //onload 加载完毕后，点'+' 展开所有子表格，点'-'，收缩所有子表格 【标题/ Master+SON*2 / Master+SON*3】
-        function showRow(tid){
+        function showRowStep(tid){
             var tableRows=document.getElementById("t_main").rows;
+
+            //console.log(tableRows.length);//遍历所有行，以及这行的ID
             for(var j=0;j<tableRows.length;j++){
+                //console.log(tableRows[j].id)
                 var s=tableRows[j].id;
                 var tmp=tid.id+"-";
-                if(s.indexOf(tmp)!=-1 && s!=tid.id){
-                    //alert(s);
+                if(s.indexOf(tmp)!=-1 && s!=tid.id && s.split('-').length!=3){
+                //每一行的ID做规则匹配，如果id是 t[x]-，但不是t[x]-[x]-[x] ,t0是this入参，说明匹配到子行，进行对应操作
                     if(tableRows[j].style.display==""){
                         tableRows[j].style.display="none";
                         tid.cells[0].firstChild.data="+";
@@ -54,6 +58,45 @@
                         tableRows[j].style.display="";
                         tid.cells[0].firstChild.data="-";
                     }
+                }
+            }
+        }
+
+        function showRowEle(tid){
+            var tableRows=document.getElementById("t_main").rows;
+
+            console.log(tid);
+            //console.log(tid);
+            //console.log(tid.id);
+            var cond=1;
+            var cc=0;
+            while(cond==1)
+            {
+                //console.log(tid.id+"-"+cc.toString());
+                //console.log(document.getElementById(tid.id+"-"+cc.toString()))
+                if(document.getElementById(tid.id+"-"+cc.toString()))
+                {
+                    cc++
+                } else
+                {
+                    cond=0;
+                }
+            }
+            //console.log(cc);
+            //console.log(tableRows.length);//遍历所有行，以及这行的ID
+            for(var j=0;j<cc;j++){
+                var tmp=document.getElementById(tid.id+"-"+ j.toString())
+                console.log(tmp);
+                if(!tmp.display){
+                    console.log('222222222222')
+                    tmp.style.display="";
+                    tid.cells[0].firstChild.data="-";
+                    console.log(tmp)
+                }
+                else if (tmp.display=="table-row") {
+                    console.log('33333333333333')
+                    tmp.display="none";
+                    tid.cells[0].firstChild.data="+";
                 }
             }
         }

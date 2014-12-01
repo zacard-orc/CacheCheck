@@ -78,8 +78,8 @@ router.get('/htable', function(req, res) {
             ],
             "headers":
             [
-                {"XFF":"1.1.1.1"},
-                {"XFF":"2.2.2.2"}
+                {"XFF":"1.1.1.1","Cache":3600},
+                {"XFF":"2.2.2.2","Cache":7200}
             ]
         },
         {
@@ -95,7 +95,9 @@ router.get('/htable', function(req, res) {
                 [
                     {"XFF":"3.3.3.3"},
                     {"XFF":"4.4.4.4"},
-                    {"XFF":"5.5.5.5"}
+                    {"XFF":"5.5.5.5"},
+                    {"XFF":"6.6.6.6"}
+
                 ]
         }
     ];

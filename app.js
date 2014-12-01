@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var RedisStore = require('connect-redis')(session);
 var redis = require('redis');
-var client = redis.createClient(6379,'192.168.137.202');
+//var client = redis.createClient(6379,'192.168.137.202');
 var async=require("async");
 
 var routes = require('./routes/index');
@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public'),{
     }
 }));
 
+/*
 app.use(session({
     store: new RedisStore({
         host: "192.168.137.202",
@@ -46,7 +47,7 @@ app.use(session({
     saveUninitialized:false,
     secret: 'linly'
 }));
-
+*/
 
 
 
