@@ -9,6 +9,10 @@ router.get('/', function(req, res) {
 
 
 router.get('/news', function(req, res) {
+    //console.log(req.headers);
+
+
+
     res.render('news', { title: 'Express' });
 });
 

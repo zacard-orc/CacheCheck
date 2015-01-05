@@ -5,10 +5,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var RedisStore = require('connect-redis')(session);
-var redis = require('redis');
 //var client = redis.createClient(6379,'192.168.137.202');
 var async=require("async");
+var SessionStore = require('express-mysql-session');
+
+var options = {
+    host: 'minfo2014.mysql.rds.aliyuncs.com',
+    port: 3306,
+    user: 'minfo',
+    password: '6yhn7ujm',
+    database: 'minfo'
+};
+
+var sessionStore = new SessionStore(options)
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,13 +37,21 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('linly'));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'),{
     maxAge:'1d',
     setHeaders: function (res, path) {
         res.set('X-Powered-By', 'Hello');
         res.set('x-timestamp', Date.now());
     }
+}));
+
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: true,
+    saveUninitialized: true
 }));
 
 /*
@@ -49,26 +66,33 @@ app.use(session({
 }));
 */
 
-
-
-
-
 app.use(function (req, res, next) {
     res.setHeader('X-Powered-By', 'ABC');
     res.setHeader('Cache-contral','max-age=315360000');
     //console.log('Time: %d', Date.now());
+
+    console.log(req.cookies);
+    console.log(req.session);
+    var session = req.session;
+    session.count = session.count || 0;
+    var n = session.count++;
+    console.log('hello, session id:' + session.id + ' count:' + n);
+
+
     next();
 });
 
 app.use('/', routes);
 app.use('/users', users);
 
+/*
 app.get('/redisses',function(req,res){
     req.session.user = 'linly';
     console.log(req.session);
     res.cookie('name', 'tobi', { domain: '', path: '/admin', secure: true });
     res.send(req.session.user);
 });
+
 
 app.get('/checkses',function(req,res){
     //console.log(req.session.user);
@@ -90,9 +114,9 @@ app.get('/showredis',function(req,res){
             console.log(xres);
             res.render('redis_info',{restxt:xres});
         });
-
     });
 });
+*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

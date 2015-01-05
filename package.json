@@ -17,6 +17,7 @@
     "connect-redis":"*",
     "redis":"*",
     "redis-server":"*",
-    "async":"*"
+    "async":"*",
+    "express-mysql-session":"*"
   }
 }
