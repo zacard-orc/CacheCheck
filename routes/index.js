@@ -11,6 +11,14 @@ router.get('/', function(req, res) {
 router.get('/news', function(req, res) {
     //console.log(req.headers);
 
+    console.log(req.cookies);
+    console.log(req.session);
+
+    var session = req.session;
+    session.count = session.count || 0;
+    var n = session.count++;
+    console.log('hello, session id:' + session.id + ' count:' + n);
+    req.session.x_user='linly'
 
 
     res.render('news', { title: 'Express' });

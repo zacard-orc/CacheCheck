@@ -71,12 +71,6 @@ app.use(function (req, res, next) {
     res.setHeader('Cache-contral','max-age=315360000');
     //console.log('Time: %d', Date.now());
 
-    console.log(req.cookies);
-    console.log(req.session);
-    var session = req.session;
-    session.count = session.count || 0;
-    var n = session.count++;
-    console.log('hello, session id:' + session.id + ' count:' + n);
 
 
     next();
