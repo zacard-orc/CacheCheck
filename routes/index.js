@@ -20,7 +20,6 @@ router.get('/news', function(req, res) {
     console.log('hello, session id:' + session.id + ' count:' + n);
     req.session.x_user='linly'
 
-
     res.render('news', { title: 'Express' });
 });
 
@@ -119,6 +118,10 @@ router.get('/htable', function(req, res) {
 
 router.get('/hext', function(req, res) {
     res.render('hext', {title:'Table Extend' });
+});
+
+router.post('/autoinfo',function(req,res){
+   res.send([{id:1,city:'Shanghai'},{id:2,city:'Tokoy'}])
 });
 
 

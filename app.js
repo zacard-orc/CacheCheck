@@ -50,6 +50,7 @@ app.use(session({
     key: 'session_cookie_name',
     secret: 'session_cookie_secret',
     store: sessionStore,
+    cookie: {maxAge: 1000 * 60},
     resave: true,
     saveUninitialized: true
 }));
@@ -70,9 +71,6 @@ app.use(function (req, res, next) {
     res.setHeader('X-Powered-By', 'ABC');
     res.setHeader('Cache-contral','max-age=315360000');
     //console.log('Time: %d', Date.now());
-
-
-
     next();
 });
 

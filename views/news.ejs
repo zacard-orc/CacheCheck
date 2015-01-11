@@ -4,7 +4,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/jquery-ui.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/jquery-ui.js"></script>
+
     <script src="/javascripts/x.js"></script>
 </head>
 <body >
@@ -13,10 +17,20 @@
 <p id="tt1"> </p>
 <p><a href="/">Goback Home</a></p>
 
+<label for="tags" style="color: #ffffff">Tags: </label>
+<input id="tags">
+
 
 <script type="text/javascript">
     var c=document.getElementById("tt1");
     c.innerText=add(10,20);
+
+    $("#tags").autocomplete({
+        source:function(request, response) {
+          console.log(request)
+        },
+        delay:300
+    });
 </script>
 </body>
 </html>
