@@ -8,8 +8,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/javascripts/jquery-1.11.1.min.js"></script>
     <script src="/javascripts/jquery-ui.js"></script>
-
     <script src="/javascripts/x.js"></script>
+    <img src="/stylesheets/images/222.png">
+
 </head>
 <body >
 <h1><%= title %></h1>
@@ -17,8 +18,13 @@
 <p id="tt1"> </p>
 <p><a href="/">Goback Home</a></p>
 
+
+
 <label for="tags" style="color: #ffffff">Tags: </label>
 <input id="tags" style="width: 200px">
+
+</br>
+</p>
 <input id="project" style="width: 400px">
 
 
@@ -48,12 +54,7 @@
             });
         },
         delay:300
-    })._renderItem = function (ul, item) {
-        return $("<li></li>")
-                .data("item.autocomplete", item)
-                .append("<a>" + item.label + "<br>" + item.value + "</a>")
-                .appendTo(ul);
-    }
+    })
 
     var projects = [
         {
@@ -79,12 +80,32 @@
     $("#project").autocomplete({
         source: projects
     })
+    /*
     $("#project").data("autocomplete")._renderItem = function (ul, item) {
         return $("<li></li>")
                 .data("item.autocomplete", item)
                 .append("<a>" + item.label + "<br>" + item.desc + "</a>")
                 .appendTo(ul);
     };
+*/
+</script>
+<script>
+    //console.log(window.performance)
+    obj_perf=window.performance.getEntries();
+    for(var i=0;i<obj_perf.length;i++)
+    {
+        console.log(obj_perf[i].name+':'+obj_perf[i].duration.toFixed(2)+
+                '|'+obj_perf[i].domainLookupStart.toFixed(2)+
+                '|'+obj_perf[i].connectStart.toFixed(2)+
+                '|'+obj_perf[i].requestStart.toFixed(2)+
+                '|'+obj_perf[i].responseStart.toFixed(2)+
+                '|'+obj_perf[i].responseEnd.toFixed(2)
+        )
+    }
+
+    console.log(navigator)
+   // console.log(window.performance.getEntries('image'))
+    //console.log(window.navigation)
 
 </script>
 </body>
