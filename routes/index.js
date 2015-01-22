@@ -7,6 +7,9 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/bid',function(req,res){
+    res.render('bid',{title:'Big Screen'});
+});
 
 router.get('/news', function(req, res) {
     //console.log(req.headers);
