@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>表格H5测试</title>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+
+<body>
+<style>
+    div
+    {
+        width:100px;
+        height:100px;
+        background:red;
+        animation:myfirst 5s;
+        -moz-animation:myfirst 5s; /* Firefox */
+        -webkit-animation:myfirst 5s; /* Safari and Chrome */
+        -o-animation:myfirst 5s; /* Opera */
+    }
+
+    @keyframes myfirst
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+
+    @-moz-keyframes myfirst /* Firefox */
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+
+    @-webkit-keyframes myfirst /* Safari and Chrome */
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+
+    @-o-keyframes myfirst /* Opera */
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+</style>
+<canvas id="myCanvas" width="90" height="90"></canvas>
+<canvas id="myCanvas2" width="180" height="180"></canvas>
+<canvas id="myCanvas3" width="270" height="270"></canvas>
+<canvas id="myCanvas4" width="360" height="360"></canvas>
+
+<div>Hello World</div>
+
+<script type="text/javascript">
+
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+        //if (w < 2 * r) r = w / 2;
+        //if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x+r, y);
+        this.arcTo(x+w, y, x+w, y+h, r);
+        this.arcTo(x+w, y+h, x, y+h, r);
+        this.arcTo(x, y+h, x, y, r);
+        this.arcTo(x, y, x+w, y, r);
+        // this.arcTo(x+r, y);
+        this.closePath();
+        return this;
+    }
+
+    qr_base=function(obj,x, y, w, h, r,fcolor){
+        console.log(obj)
+        var c=document.getElementById(obj);
+        var ctx=c.getContext('2d');
+        ctx.strokeStyle = 'white';
+        ctx.fillStyle =fcolor;
+        ctx.roundRect(x, y, w, h, r);
+        ctx.fill();
+        ctx.stroke();
+    };
+    //对象，起点+2，长宽步长, 弧度,填充色
+    qr_stroke=function(obj,u_size,rads)
+    {
+        console.log(obj);
+        for(var i=0;i<4;i++)
+        {
+            console.log(i)
+            if (i%2==0)
+                qr_base(obj,i*u_size,i*u_size,u_size*9-i*u_size*2,u_size*9-i*u_size*2,rads--,'white')
+            else
+                qr_base(obj,i*u_size,i*u_size,u_size*9-i*u_size*2,u_size*9-i*u_size*2,rads--,'black')
+        }
+    }
+
+    qr_stroke('myCanvas',10,13);
+    qr_stroke('myCanvas2',20,16);
+    qr_stroke('myCanvas3',30,19);
+    qr_stroke('myCanvas4',40,22);
+
+    /*
+    qr_base('myCanvas',10,10,70,70,12,'black')
+    qr_base('myCanvas',20,20,50,50,10,'white')
+    qr_base('myCanvas',30,30,30,30,10,'black')
+
+    qr_base('myCanvas2',0,0,180,180,15,'white')
+    qr_base('myCanvas2',20,20,140,140,14,'black')
+    qr_base('myCanvas2',40,40,100,100,13,'white')
+    qr_base('myCanvas2',60,60,60,60,12,'black')
+
+    qr_base('myCanvas3',0,0,270,270,20,'white')
+    */
+
+</script>
+
+<%- include footer%>

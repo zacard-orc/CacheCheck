@@ -17,7 +17,7 @@ var options = {
     database: 'minfo'
 };
 
-var sessionStore = new SessionStore(options)
+var sessionStore = new SessionStore(options);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
