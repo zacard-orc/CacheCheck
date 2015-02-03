@@ -45,8 +45,10 @@
     }
 </style>
 
-<canvas id="myCanvas"></canvas>
+
+<canvas id="xCanvas" width="300" height="300"></canvas>
 <img id="xx_img">
+<!--img id="bb_img" src="/images/abc.png"-->
 <p id="xx_info"></p>
 <p ><a id="xx_download">点我下载</a></p>
 <div>Hello World</div>
@@ -65,19 +67,25 @@
     textSize = 70
 
     $(document).ready(function(){
-        canvas = document.createElement('canvas')
-        canvas.width = width
-        canvas.height = height
+       // canvas = document.createElement('canvas')
+        canvas = document.getElementById('xCanvas')
+       // tst = document.createElement('tstcvs')
 
-        startTime = null
-        ctx = canvas.getContext('2d')
+        canvas.width = width;
+        canvas.height = height;
+
+        startTime = null;
+        ctx = canvas.getContext('2d');
+
+
 
         var gif = new GIF({
             workers: 4,
             workerScript: '/javascripts//gif.worker.js',
             quality: 10,
             width:width,
-            height:height
+            height:height,
+            transparent:'#ffffff'
         });
 
         ctx.textAlign = 'center'
@@ -108,7 +116,7 @@
             grd.addColorStop(0,"#00CED1");
             grd.addColorStop(1,"#ADFF2F");
             ctx.fillStyle = grd
-            ctx.fillRect(0, 0, i*30, i*15)
+            ctx.fillRect(0, 0, i*15, i*10)
             gif.addFrame(ctx, {copy: true, delay: gif_level})
         }
 
