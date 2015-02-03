@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>表格H5测试</title>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <script src='/javascripts/gif.js'></script>
+    <script src='/javascripts/gif.worker.js'></script>
+<body>
+<style>
+    div
+    {
+        width:100px;
+        height:100px;
+        background:red;
+        animation:myfirst 5s;
+        -moz-animation:myfirst 5s; /* Firefox */
+        -webkit-animation:myfirst 5s; /* Safari and Chrome */
+        -o-animation:myfirst 5s; /* Opera */
+    }
+
+    @keyframes myfirst
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+
+    @-moz-keyframes myfirst /* Firefox */
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+
+    @-webkit-keyframes myfirst /* Safari and Chrome */
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+
+    @-o-keyframes myfirst /* Opera */
+    {
+        from {background:red;}
+        to {background:yellow;}
+    }
+</style>
+
+<canvas id="myCanvas" width="300" height="300"></canvas>
+
+<div>Hello World</div>
+
+<script type="text/javascript">
+
+    num_frames = 20
+    width = 600
+    height = 300
+    text = 'HYPNO TOAD'
+    textSize = 70
+
+    $(document).ready(function(){
+        canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height
+
+        startTime = null
+        ctx = canvas.getContext('2d')
+
+        var gif = new GIF({
+            workers: 2,
+            workerScript: '/javascripts//gif.worker.js',
+            quality: 10,
+            width:width,
+            height:height
+        });
+
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.lineWidth = 3
+        w2 = width / 2
+        h2 = height / 2
+
+        for(var i=0;i<10;i++)
+        {
+            ctx.fillRect(0, 0, width, height)
+            gif.addFrame(ctx, {copy: true, delay: 20})
+        }
+
+        gif.render()
+    });
+
+</script>
+
+<%- include footer%>

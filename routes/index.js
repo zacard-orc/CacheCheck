@@ -16,6 +16,10 @@ router.get('/h5',function(req,res){
     res.render('h5',{title:'H5 Canvas'});
 });
 
+router.get('/gif',function(req,res){
+    res.render('gif',{title:'H5 Canvas'});
+});
+
 router.get('/news', function(req, res) {
     //console.log(req.headers);
 
