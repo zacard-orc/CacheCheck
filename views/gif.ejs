@@ -45,13 +45,20 @@
     }
 </style>
 
-<canvas id="myCanvas" width="300" height="300"></canvas>
-
+<canvas id="myCanvas"></canvas>
+<img id="xx_img">
+<p id="xx_info"></p>
+<p ><a id="xx_download">点我下载</a></p>
 <div>Hello World</div>
+
 
 <script type="text/javascript">
 
-    num_frames = 20
+    life_time= 1
+    per_frames = 24
+    num_frames=life_time*per_frames
+    gif_level=1000/num_frames
+
     width = 600
     height = 300
     text = 'HYPNO TOAD'
@@ -66,7 +73,7 @@
         ctx = canvas.getContext('2d')
 
         var gif = new GIF({
-            workers: 2,
+            workers: 4,
             workerScript: '/javascripts//gif.worker.js',
             quality: 10,
             width:width,
@@ -79,10 +86,30 @@
         w2 = width / 2
         h2 = height / 2
 
-        for(var i=0;i<10;i++)
+        gif.on('start',function(){
+           startTime=Date.now()
+        });
+
+        gif.on('progress',function(p){
+            $("#xx_info").text(Math.round(p * 100)+'%')
+        });
+        gif.on('finished', function(blob) {
+            console.log(blob)
+            $("#xx_img").attr("src",URL.createObjectURL(blob))
+            $("#xx_info").text(blob.type+';100%;'+(Date.now()-startTime)/1000+'秒;'+(blob.size / 1024).toFixed(2)+'KB')
+            $("#xx_download").attr("href",URL.createObjectURL(blob))
+            $("#xx_download").attr("target","_blank")
+        });
+        for(var i=0;i<num_frames;i++)
         {
-            ctx.fillRect(0, 0, width, height)
-            gif.addFrame(ctx, {copy: true, delay: 20})
+            p = i / (num_frames - 1)
+           // grad = ctx.createRadialGradient(w2, h2, 0, w2, h2, w2)
+            var grd=ctx.createLinearGradient(0,0,width,height);
+            grd.addColorStop(0,"#00CED1");
+            grd.addColorStop(1,"#ADFF2F");
+            ctx.fillStyle = grd
+            ctx.fillRect(0, 0, i*30, i*15)
+            gif.addFrame(ctx, {copy: true, delay: gif_level})
         }
 
         gif.render()
