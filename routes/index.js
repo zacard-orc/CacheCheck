@@ -12,16 +12,13 @@ router.get('/bid',function(req,res){
 });
 
 
-router.get('/h5',function(req,res){
-    res.render('h5',{title:'H5 Canvas'});
-});
+router.get('/h5',function(req,res){ res.render('h5',{title:'H5 Canvas'});});
+router.get('/gif',function(req,res){res.render('gif',{title:'H5 Canvas'});});
+router.get('/cool',function(req,res){res.render('cool',{title:'H5 Canvas'});});
+router.get('/cool2',function(req,res){res.render('cool2',{title:'H5 Canvas'});});
 
-router.get('/gif',function(req,res){
-    res.render('gif',{title:'H5 Canvas'});
-});
 
 router.get('/news', function(req, res) {
-    //console.log(req.headers);
 
     console.log(req.cookies);
     console.log(req.session);
