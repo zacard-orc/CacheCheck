@@ -16,37 +16,17 @@
     var my_canvas=$my_canvas[0];
     var cvs=my_canvas.getContext("2d");
 
-    preImage('/images/ggg.png',function(){
-        cvs.drawImage(this,50,50,310,310);
-        cvs.fillStyle="#FF0000";
-        var i= 1,l=90;
-        setInterval(function(){
-            l=90+i;
-            console.log(i,l)
-            cvs.fillStyle="#000000"
-            cvs.fillRect(l,l,150,75);
-            //cvs.globalAlpha=0.2
-            setInterval(function(){
-                cvs.clearRect(0,0,400,400);
-                i=i+3;
-            },50);
-        },200);
-    });
-
-
-
-    function preImage(url,callback){
-        var img = new Image(); //创建一个Image对象，实现图片的预下载
-        img.src = url;
-
-        if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数
-            callback.call(img);
-            return; // 直接返回，不用再处理onload事件
-        }
-        img.onload = function () { //图片下载完毕时异步调用callback函数。
-            callback.call(img);//将回调函数的this替换为Image对象
-        };
-    }
+    cc='000000'
+    dd="#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6);
+    ee=(Math.random()*16777215+0.5)>>0
+    console.log(ee)
+    console.log(("00000"+(ee).toString(16)))
+    console.log(("00000"+(ee).toString(16)).slice(-6))
+    console.log(dd)
+    cvs.shadowBlur=20;
+    cvs.shadowColor=dd
+    cvs.fillStyle='blue'
+    cvs.fillRect(20,20,180,180)
 
 
 </script>
