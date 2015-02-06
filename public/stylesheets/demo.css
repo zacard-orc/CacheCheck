@@ -42,9 +42,9 @@ a:hover, a:focus {
 	position: relative;
 	background: url(../images/gridme.png) repeat center center;
 	padding: 4em;
-	height: 500px;
+	height: 1400px;
 	border: 3px solid #49708A;
-	max-width: 901px;
+	max-width: 1901px;
 	overflow: hidden;
 	margin: 0 auto;
 }
