@@ -5,28 +5,40 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>表格H5测试</title>
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
-
+    <script src='/javascripts/gif.js'></script>
+    <script src='/javascripts/gif.worker.js'></script>
 </head>
 <body>
-<div style="text-align: center">
-<canvas id="myCanvas" width="400" height="400" style="border:1px solid #c3c3c3;"></canvas>
+<div style="text-align: left">
+<canvas id="myCanvas" width="1200" height="768" style="border:2px solid #c3c3c3;"></canvas>
 </div>
+
+
+
+
 <script type="text/javascript">
     var $my_canvas=$("#myCanvas");
-    var my_canvas=$my_canvas[0];
-    var cvs=my_canvas.getContext("2d");
+    var ctx=$my_canvas[0].getContext("2d");
 
-    cc='000000'
-    dd="#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6);
-    ee=(Math.random()*16777215+0.5)>>0
-    console.log(ee)
-    console.log(("00000"+(ee).toString(16)))
-    console.log(("00000"+(ee).toString(16)).slice(-6))
-    console.log(dd)
-    cvs.shadowBlur=20;
-    cvs.shadowColor=dd
-    cvs.fillStyle='blue'
-    cvs.fillRect(20,20,180,180)
+    preImage('/images/demo_2.png',function(){
+        ctx.drawImage(this,0,0 ,1200,768)
+    });
+
+    function preImage(url,callback){
+        var img = new Image(); //创建一个Image对象，实现图片的预下载
+        img.src = url;
+        console.log(img.width)
+
+        if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数
+            callback.call(img);
+            return; // 直接返回，不用再处理onload事件
+        }
+        img.onload = function () { //图片下载完毕时异步调用callback函数。
+            callback.call(img);//将回调函数的this替换为Image对象
+        };
+    }
+
+
 
 
 </script>
