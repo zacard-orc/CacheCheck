@@ -18,6 +18,8 @@ router.get('/cool',function(req,res){res.render('cool',{title:'H5 Canvas'});});
 router.get('/cool2',function(req,res){res.render('cool2',{title:'H5 Canvas'});});
 router.get('/my',function(req,res){res.render('my',{title:'H5 Canvas'});});
 router.get('/cap',function(req,res){res.render('cap',{title:'H5 Canvas'});});
+router.get('/div',function(req,res){res.render('div_css',{title:'H5 Canvas'});});
+router.get('/div2',function(req,res){res.render('div_css2',{title:'H5 Canvas'});});
 
 
 router.get('/news', function(req, res) {

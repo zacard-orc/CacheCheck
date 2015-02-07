@@ -11,8 +11,8 @@ var resizeableImage = function(image_target) {
       constrain = false,
       min_width = 60, // Change as required
       min_height = 60,
-      max_width = 800, // Change as required
-      max_height = 900,
+      max_width = 2000, // Change as required
+      max_height = 2000,
       resize_canvas = document.createElement('canvas');
 
   init = function(){
@@ -58,7 +58,8 @@ var resizeableImage = function(image_target) {
     event_state.container_top = $container.offset().top;
     event_state.mouse_x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft(); 
     event_state.mouse_y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
-	
+
+
 	// This is a fix for mobile safari
 	// For some reason it does not allow a direct copy of the touches property
 	if(typeof e.originalEvent.touches !== 'undefined'){
@@ -76,7 +77,8 @@ var resizeableImage = function(image_target) {
     var mouse={},width,height,left,top,offset=$container.offset();
     mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft(); 
     mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
-    
+
+      console.log(mouse.x+','+mouse.y)
     // Position image differently depending on the corner dragged and constraints
     if( $(event_state.evnt.target).hasClass('resize-handle-se') ){
       width = mouse.x - event_state.container_left;

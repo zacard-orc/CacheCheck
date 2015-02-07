@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>表格H5测试</title>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/div.css" />
+<body>
+<style>
+
+
+</style>
+
+<div class="mc_d_info" id="d_info"></div>
+<div class="mc_d_div" id="d_xx">
+        <div class="mc_d_qr" id="d_qr_1"></div>
+        <div class="mc_d_qr" id="d_qr_2"></div>
+        <div class="mc_d_qr_css3_spiner" id="d_qr_5"></div>
+        <div class="mc_d_qr" id="d_qr_3">
+            <canvas id="cs_qr" width="320px" height="320px">  </canvas>
+        </div>
+</div >
+<img id="img_xx" src="/images/demo_2.png" style="display: none">
+
+
+
+</body>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+    var img=new Image();
+    img.src=document.getElementById("img_xx").src;
+
+    img.onload = function(){
+       // console.log(img.width+','+img.height);
+        $("#d_xx").css("width",img.width);
+        $("#d_xx").css("height",img.height);
+        $("#d_info").text(img.width+' X '+img.height)
+
+        var odiv=document.getElementById('d_xx');
+        console.log(odiv.getBoundingClientRect().left+','+odiv.getBoundingClientRect().top);
+
+        $("#d_qr_1").css("z-index",10);
+
+
+        $("#d_qr_2").css("z-index",20);
+        $("#d_qr_2").css("background","red");
+        $("#d_qr_2").css("left","20px");
+        $("#d_qr_2").css("top","40px");
+
+        $("#d_qr_3").css("z-index",30);
+        $("#d_qr_3").css("background","none");
+        $("#d_qr_3").css("width","320");
+        $("#d_qr_3").css("height","320");
+        $("#d_qr_3").css("left","980px");  //SELECTED[X]+INIT_OFFSET[X]
+        $("#d_qr_3").css("top","298px");    //SELECTED[Y]+INIT_OFFSET[Y]
+        $("#d_qr_3").css("opacity","1");    //SELECTED[Y]+INIT_OFFSET[Y]
+
+        var ctx=document.getElementById("cs_qr").getContext("2d");
+
+        setInterval(function(){
+            ctx.clearRect(0,0,320,320)
+            dd="#"+("00000"+((Math.random()*16777215+0.5)>>0).toString(16)).slice(-6);
+            ctx.shadowBlur=50;
+            console.log(dd);
+            ctx.shadowColor=dd;
+            ctx.globalAlpha=1
+            //ctx.fillStyle="red"
+            //ctx.fillRect(28,31,270,270)
+            ctx.drawImage(img,1000,300,270,270,28,31,270,270);
+        },1000)
+
+
+
+
+        $("#d_xx").after('<div class="mc_d_qr" id="d_qr_4" style="z-index:40;left:150px;top:250px"></div>')
+
+    }
+});
+
+</script>
+</html>
