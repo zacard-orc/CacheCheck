@@ -20,6 +20,7 @@ router.get('/my',function(req,res){res.render('my',{title:'H5 Canvas'});});
 router.get('/cap',function(req,res){res.render('cap',{title:'H5 Canvas'});});
 router.get('/div',function(req,res){res.render('div_css',{title:'H5 Canvas'});});
 router.get('/div2',function(req,res){res.render('div_css2',{title:'H5 Canvas'});});
+router.get('/div3',function(req,res){res.render('div_css3',{title:'H5 Canvas'});});
 
 
 router.get('/news', function(req, res) {

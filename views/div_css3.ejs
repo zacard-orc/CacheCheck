@@ -1,4 +1,4 @@
-<!-- 旋转  -->
+<!-- 淡入淡出 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +17,8 @@
 <div class="mc_d_div" id="d_xx">
     <div class="mc_d_qr" id="d_qr_1"></div>
     <div class="mc_d_qr" id="d_qr_2"></div>
-    <div class="mc_d_qr_css3_spiner" id="d_qr_3">
-        <canvas id="cs_qr" width="270px" height="270px">  </canvas>
+    <div class="mc_d_qr" id="d_qr_3">
+        <canvas id="cs_qr" width="320px" height="320px">  </canvas>
     </div>
 </div >
 <img id="img_xx" src="/images/demo_2.png" style="display: none">
@@ -52,17 +52,38 @@
 
             $("#d_qr_3").css("z-index",30);
             $("#d_qr_3").css("background","none");
-            $("#d_qr_3").css("width","270");
-            $("#d_qr_3").css("height","270");
-            $("#d_qr_3").css("left","1008px");  //SELECTED[X]+INIT_OFFSET[X]
-            $("#d_qr_3").css("top","329px");    //SELECTED[Y]+INIT_OFFSET[Y]
+            $("#d_qr_3").css("width","320");
+            $("#d_qr_3").css("height","320");
+            $("#d_qr_3").css("left","980px");  //SELECTED[X]+INIT_OFFSET[X]
+            $("#d_qr_3").css("top","298px");    //SELECTED[Y]+INIT_OFFSET[Y]
             $("#d_qr_3").css("opacity","1");    //SELECTED[Y]+INIT_OFFSET[Y]
 
             var ctx=document.getElementById("cs_qr").getContext("2d");
+            var a= 0,direct=1;
 
-
-            ctx.drawImage(img,1000,300,270,270,0,0,270,270);
-
+            setInterval(function(){
+                console.log(a)
+                ctx.clearRect(28,31,270,270)
+                ctx.globalAlpha=a
+                //ctx.fillStyle="red"
+                //ctx.fillRect(28,31,270,270)
+                ctx.drawImage(img,1000,300,270,270,28,31,270,270);
+                if (direct==1)
+                {
+                    a=a+0.025
+                    if(a>1)
+                    {
+                        direct=-1
+                    }
+                } else
+                {
+                    a=a-0.025
+                    if(a<0)
+                    {
+                        direct=1
+                    }
+                }
+            },30)
 
 
 

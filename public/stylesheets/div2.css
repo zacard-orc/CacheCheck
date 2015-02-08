@@ -1,5 +1,5 @@
 .mc_d_div {
-    background:url('/images/demo_2.png');
+    background:url('/images/demo_2_raw.png');
     border:1px solid #c3c3c3;
     float: left;
 }
@@ -8,15 +8,6 @@
     opacity:0.3;
     background:dodgerblue;
     border:1px solid #c3c3c3;
-    width: 270px;
-    height: 270px;
-    position:absolute;
-}
-
-.mc_d_qr_x {
-    opacity:1;
-    background:dodgerblue;
-    border:2px solid #000000;
     width: 270px;
     height: 270px;
     position:absolute;
@@ -47,20 +38,20 @@
 }
 
 .mc_d_qr_css3_spiner {
-    width: 50px;
-    height: 50px;
-    background-color: #67CF22;
-    margin-left:400px;
-    margin-top:20px;
+    opacity:0.3;
+    background:dodgerblue;
+    border:1px solid #c3c3c3;
+    width: 270px;
+    height: 270px;
     position:absolute;
     -webkit-animation: rotateplane 2s infinite 0.1s ease-in-out;
 }
 
 @-webkit-keyframes rotateplane {
-    0%   {background:#67CF22; left:10px; top:28px;}
-    40%  {background:#67CF22; left:200px; top:200px;}
-    60%  {background:#67CF22; left:200px; top:200px;}
-    90% {background:#67CF22; left:10px; top:28px;}
+    0% { -webkit-transform: perspective(250px) }
+    25% { -webkit-transform: perspective(250px) rotate(180deg) }
+    50% { -webkit-transform: perspective(250px) rotate(0deg)  }
+    75% { -webkit-transform: perspective(250px) }
 }
 
 .mc_d_info {
