@@ -1,4 +1,17 @@
 var express = require('express');
+var upload = require('jquery-file-upload-middleware');
+
+upload.configure({
+    uploadDir: __dirname + '/public/uploads',
+    uploadUrl: '/uploads',
+    imageVersions: {
+        thumbnail: {
+            width: 4000,
+            height: 4000
+        }
+    }
+});
+
 var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,6 +21,8 @@ var bodyParser = require('body-parser');
 //var client = redis.createClient(6379,'192.168.137.202');
 var async=require("async");
 var SessionStore = require('express-mysql-session');
+
+
 
 var options = {
     host: 'minfo2014.mysql.rds.aliyuncs.com',
@@ -45,6 +60,8 @@ app.use(express.static(path.join(__dirname, 'public'),{
         res.set('x-timestamp', Date.now());
     }
 }));
+
+app.use('/upload', upload.fileHandler());
 
 app.use(session({
     key: 'session_cookie_name',

@@ -18,6 +18,7 @@
     "redis":"*",
     "redis-server":"*",
     "async":"*",
-    "express-mysql-session":"*"
+    "express-mysql-session":"*",
+    "jquery-file-upload-middleware":"*"
   }
 }

@@ -140,5 +140,10 @@ router.post('/autoinfo',function(req,res){
    res.send([{id:1,city:'Shanghai'},{id:2,city:'Tokoy'}])
 });
 
+router.post('/svr_dataload_1001',function(req,res){
+    console.log(req)
+    res.send([{id:1,city:'Shanghai'},{id:2,city:'Tokoy'}])
+});
+
 
 module.exports = router;
