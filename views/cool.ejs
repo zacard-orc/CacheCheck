@@ -139,6 +139,8 @@
             this.points = [];
             for (var i = -1, l = data.length; ++i < l;) {
                 args = data[i].slice(1);
+                console.log(args)
+                console.log(data)
                 method = data[i][0];
                 if (method in argSignatures) for (var a = -1, al = args.length; ++a < al;) {
                     type = argSignatures[method][a];
@@ -158,11 +160,14 @@
                     args[a] = value;
                 }
                 args.unshift(0);
+                console.log(args)
+                console.log(this.pointDistance)
                 for (var r, pd = this.pointDistance, t = pd; t <= 1; t += pd) {
-
+                    console.log(t)
                     // Avoid crap like 0.15000000000000002
                     t = Math.round(t*1/pd) / (1/pd);
                     args[0] = t;
+                    console.log(args)
                     r = pathMethods[method].apply(null, args);
                     this.points.push({
                         x: r[0],
@@ -170,6 +175,7 @@
                         progress: t
                     });
                 }
+                console.log(this.points)
             }
             this.frame = 0;
             //this.prep(this.frame);

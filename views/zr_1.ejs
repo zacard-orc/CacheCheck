@@ -12,10 +12,8 @@
 
 </head>
 <body>
-<div id="main" class="main"></div>
+<div id="main"></div>
 <script>
-    var zr; // 全局可用zrender对象
-    var domMain = document.getElementById('main');
     require.config({
         packages: [
             {
@@ -25,22 +23,69 @@
             }
         ]
     });
-    var color;
-    var colorIdx = 0;
-    var width;
-    var height;
     require(
-            ['zr', 'zr/src/shape/rose', 'zr/src/shape/trochoid'],
-            function (zrender) {
+            [
+                'zrender',
+                'zrender/tool/color',
+                'zrender/shape/Sector'
+            ],
+            function ( zrender, zrColor, SectorShape) {
+                var zr = zrender.init(document.getElementById('main'));
+                zr.clear();
 
-                zr = zrender.init(domMain);
-                color = require('zrender/tool/color');
+                var data = [10,13,23,8,35,18];
+                var total = 0;
+                for (var i = 0, l = data.length; i < l; i++) {
+                    total += data[i];
+                }
+                var percent;
+                var startAngle = 0;
+                var endAngle;
+                var x = Math.round(zr.getWidth() / 2);
+                var y = Math.round(zr.getHeight() / 2);
+                var r0 = 30;
+                var r = 100;
 
-                width = Math.ceil(zr.getWidth());
-                height = Math.ceil(zr.getHeight());
-                addjuxing();
+                for (var i = 0, l = data.length; i < l; i++){
+
+                    console.log(i)
+                    percent = data[i] / total;
+                    endAngle = (percent * 360 + startAngle).toFixed(2) - 0;
+                    percent = (percent * 100).toFixed(2) + '%';
+                    zr.addShape(new SectorShape({
+                        style : {
+                            x : x,          // 圆心横坐标
+                            y : y,          // 圆心纵坐标
+                            r0 : r0,        // 圆环内半径
+                            r : r,          // 圆环外半径
+                            startAngle : startAngle,
+                            endAngle : endAngle,
+                            brushType : 'both',
+                            color : zrColor.getColor(i),
+                            strokeColor : '#fff'
+                        },
+                        highlightStyle : {
+                            text : percent,
+                            textPosition : 'specific',
+                            textX : x,
+                            textY : y,
+                            textAlign : 'center',
+                            textBaseline: 'middle',
+                            textColor : 'blue',
+                            textFont : 'bold 10px verdana'
+                        },
+                        clickable : true,
+                        onclick : function(params) {
+                            alert(params.target.highlightStyle.text);
+                        }
+                    }))
+                    startAngle = endAngle;
+                }
+                zr.render();
             }
-    )
+    );
+
+
 </script>
 </body>
 </html>
