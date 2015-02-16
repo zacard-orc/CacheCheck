@@ -1,16 +1,5 @@
 var express = require('express');
-var upload = require('jquery-file-upload-middleware');
 
-upload.configure({
-    uploadDir: __dirname + '/public/uploads',
-    uploadUrl: '/uploads',
-    imageVersions: {
-        thumbnail: {
-            width: 4000,
-            height: 4000
-        }
-    }
-});
 
 var session = require('express-session');
 var path = require('path');
@@ -61,7 +50,6 @@ app.use(express.static(path.join(__dirname, 'public'),{
     }
 }));
 
-app.use('/upload', upload.fileHandler());
 
 app.use(session({
     key: 'session_cookie_name',
