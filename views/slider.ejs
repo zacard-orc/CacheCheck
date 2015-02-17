@@ -114,6 +114,9 @@ width: 200px;margin-left: 400px;margin-top: 40px">
 </br>
 <img id="cp_img" src="/images/aaa.jpg" alt="bbbbb" >
 
+<img id="preview" />
+
+
 </br>
 </br>
 </br>
@@ -125,14 +128,41 @@ width: 200px;margin-left: 400px;margin-top: 40px">
 
 <script>
 
+    $(function(){
 
+        $('#cp_img').Jcrop({
+            onChange: showPreview,
+            onSelect: showPreview,
+            onRelease: hidePreview,
+            aspectRatio: 1
+        });
 
-            $('#cp_img').Jcrop({
-                onChange : showCoords,
-                onSelect : showCoords,
-                maxSize:[400,400],
-                minSize:[400,400]
-            });
+        var $preview = $('#preview');
+        // Our simple event handler, called from onChange and onSelect
+        // event handlers, as per the Jcrop invocation above
+        function showPreview(coords)
+        {
+            if (parseInt(coords.w) > 0)
+            {
+                var rx = 120 / coords.w;
+                var ry = 120 / coords.h;
+
+                $preview.css({
+                    width: Math.round(rx * 500) + 'px',
+                    height: Math.round(ry * 370) + 'px',
+                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+                }).show();
+            }
+        }
+
+        function hidePreview()
+        {
+            $preview.stop().fadeOut('fast');
+        }
+
+    });
+
 
 
 
