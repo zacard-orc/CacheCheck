@@ -7,9 +7,12 @@
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
     <script src='/javascripts/bootstrap.min.js'></script>
     <script src='/javascripts/bootstrap-slider.js'></script>
+    <script src='/javascripts/jquery.Jcrop.min.js'></script>
 
     <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
     <link rel='stylesheet' href='/stylesheets/slider.css'/>
+    <link rel='stylesheet' href='/stylesheets/jquery.Jcrop.min.css'/>
+
 </head>
 <style>
     .container {
@@ -109,6 +112,9 @@ width: 200px;margin-left: 400px;margin-top: 40px">
     <img id="my_img" src="" alt="bbbbb" >
 </div>
 </br>
+<img id="cp_img" src="/images/aaa.jpg" alt="bbbbb" >
+
+</br>
 </br>
 </br>
 <p>
@@ -116,12 +122,19 @@ width: 200px;margin-left: 400px;margin-top: 40px">
 </p>
 
 </body>
+
 <script>
 
 
-    $(document).ready(function(){
 
-    });
+            $('#cp_img').Jcrop({
+                onChange : showCoords,
+                onSelect : showCoords,
+                maxSize:[400,400],
+                minSize:[400,400]
+            });
+
+
 
 
     $('#my_btn').click(function(e){

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>表格H5测试</title>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <script src='/javascripts/bootstrap.min.js'></script>
+    <script src='/javascripts/bootstrap-slider.js'></script>
+    <script src='/javascripts/jquery.Jcrop.min.js'></script>
+
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <link rel='stylesheet' href='/stylesheets/slider.css'/>
+    <link rel='stylesheet' href='/stylesheets/jquery.Jcrop.min.css'/>
+
+</head>
+<body>
+<div id="cutImage" style="display: none;">
+    <div class="bigImg" style="float: left;">
+        <img id="srcImg" src="" width="400px" height="270px"/>
+    </div>
+    <div id="preview_box" class="previewImg">
+        <img id="previewImg" src="" width="120px"/>
+    </div>
+
+    <div >
+        <form action="" method="post" id="crop_form">
+            <input type="hidden" id="bigImage" name="bigImage"/>
+            <input type="hidden" id="x" name="x" />
+            <input type="hidden" id="y" name="y" />
+            <input type="hidden" id="w" name="w" />
+            <input type="hidden" id="h" name="h" />
+            <P><input type="button" value="确认" id="crop_submit"/></P>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
