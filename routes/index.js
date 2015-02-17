@@ -25,6 +25,7 @@ router.get('/zr_1',function(req,res){res.render('zr_1',{title:'H5 Canvas'});});
 router.get('/file',function(req,res){res.render('file',{title:'H5 Canvas'});});
 router.get('/side',function(req,res){res.render('slider',{title:'H5 Canvas'});});
 
+var a=0;
 
 router.get('/news', function(req, res) {
 
@@ -142,7 +143,9 @@ router.post('/autoinfo',function(req,res){
 });
 
 router.post('/svr_dataload_1001',function(req,res){
-    console.log(req)
+   // console.log(req)
+    console.log(req.files)
+    console.log(req.body)
     res.send([{id:1,city:'Shanghai'},{id:2,city:'Tokoy'}])
 });
 

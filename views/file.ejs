@@ -27,16 +27,20 @@
             url: '/svr_dataload_1001',
             dataType: 'json',
             done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    $('<p/>').text(file.name).appendTo('#files');
+                console.log(e)
+                console.log(data)
+                $.each(data.result, function (index, file) {
+                    console.log(index)
+                    console.log(file)
+                    $('<p/>').text(file.city).appendTo('#files');
                 });
             },
             progressall: function (e, data) {
+                console.log(e)
+                console.log(data)
                 var progress = parseInt(data.loaded / data.total * 100, 10);
-                $('#progress .progress-bar').css(
-                        'width',
-                        progress + '%'
-                );
+                console.log(progress)
+                $('#progress .progress-bar').css('width',progress + '%');
             }
         }).prop('disabled', !$.support.fileInput)
                 .parent().addClass($.support.fileInput ? undefined : 'disabled');
