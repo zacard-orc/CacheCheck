@@ -101,9 +101,58 @@ width: 200px;margin-left: 400px;margin-top: 40px">
     </p>
     <div id="RGB" style="width: 200px;height: 50px"></div>
 </div>
+<button id="my_btn" type="button" class="btn btn-success">显示</button>
+<button id="my_btn1" type="button" class="btn btn-success">清除</button>
+<button id="my_btn2" type="button" class="btn btn-success">显示2</button>
+
+<div style="width: 540px;height: 540px;border: 2px solid green;margin-left: 100px">
+    <img id="my_img" src="" alt="bbbbb" >
+</div>
+</br>
+</br>
+</br>
+<p>
+    </br>
+</p>
 
 </body>
 <script>
+
+
+    $(document).ready(function(){
+
+    });
+
+
+    $('#my_btn').click(function(e){
+       $("#my_img").attr("src","/images/bbb.jpg")
+
+       console.log($("#my_img"))
+
+        var img=new Image();
+        img.src=document.getElementById("my_img").src;
+
+        img.onload = function(){
+            console.log(img.width)
+            console.log(img.height)
+
+            var k=(540/img.width).toFixed(3)
+            console.log(k)
+            w=539
+            h=img.height*k
+            console.log("bigger"+w,h)
+            $("#my_img").css("width",w)
+            $("#my_img").css("height",h)
+        }
+
+    });
+
+    $('#my_btn1').click(function(e){
+        $("#my_img").attr("src","")
+    });
+
+
+
     $('#sl1').slider({
         formater: function(value) {
             return 'Current value: '+value.toFixed(2);
