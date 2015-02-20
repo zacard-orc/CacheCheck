@@ -22,6 +22,7 @@
     "express-mysql-session":"*",
     "jquery-file-upload-middleware":"*",
     "connect-multiparty":"*",
-    "multer":"*"
+    "multer":"*",
+    "gm":"*"
   }
 }

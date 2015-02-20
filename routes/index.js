@@ -24,6 +24,7 @@ router.get('/div3',function(req,res){res.render('div_css3',{title:'H5 Canvas'});
 router.get('/zr_1',function(req,res){res.render('zr_1',{title:'H5 Canvas'});});
 router.get('/file',function(req,res){res.render('file',{title:'H5 Canvas'});});
 router.get('/side',function(req,res){res.render('slider',{title:'H5 Canvas'});});
+router.get('/jt',function(req,res){res.render('jdata',{title:'H5 Canvas'});});
 
 var a=0;
 

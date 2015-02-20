@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>表格H5测试</title>
+
+    <link rel='stylesheet' href='/stylesheets/jquery.datatables.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/dataTables.tableTools.min.css'/>
+
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <script src="/javascripts/jquery.datatables.min.js"></script>
+    <script src="/javascripts/dataTables.tableTools.min.js"></script>
+
+</head>
+<body>
+<table id="example" class="display" cellspacing="0" width="100%">
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Office</th>
+    <th>Age</th>
+    <th>Start date</th>
+    <th>Salary</th>
+</tr>
+</thead>
+
+<tfoot>
+<tr>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Office</th>
+    <th>Age</th>
+    <th>Start date</th>
+    <th>Salary</th>
+</tr>
+</tfoot>
+
+<tbody>
+<tr>
+    <td>Tiger Nixon</td>
+    <td>System Architect</td>
+    <td>Edinburgh</td>
+    <td>61</td>
+    <td>2011/04/25</td>
+    <td>$320,800</td>
+</tr>
+
+<tr>
+    <td>Bradley Greer</td>
+    <td>Software Engineer</td>
+    <td>London</td>
+    <td>41</td>
+    <td>2012/10/13</td>
+    <td>$132,000</td>
+</tr>
+<tr>
+    <td>Dai Rios</td>
+    <td>Personnel Lead</td>
+    <td>Edinburgh</td>
+    <td>35</td>
+    <td>2012/09/26</td>
+    <td>$217,500</td>
+</tr>
+<tr>
+    <td>Jenette Caldwell</td>
+    <td>Development Lead</td>
+    <td>New York</td>
+    <td>30</td>
+    <td>2011/09/03</td>
+    <td>$345,000</td>
+</tr>
+<tr>
+    <td>Yuri Berry</td>
+    <td>Chief Marketing Officer (CMO)</td>
+    <td>New York</td>
+    <td>40</td>
+    <td>2009/06/25</td>
+    <td>$675,000</td>
+</tr>
+
+
+</tbody>
+</table>
+</body>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            dom: 'T<"clear">lfrtip'
+        } );
+    } );
+
+</script>
+</html>
