@@ -25,6 +25,18 @@ router.get('/zr_1',function(req,res){res.render('zr_1',{title:'H5 Canvas'});});
 router.get('/file',function(req,res){res.render('file',{title:'H5 Canvas'});});
 router.get('/side',function(req,res){res.render('slider',{title:'H5 Canvas'});});
 router.get('/jt',function(req,res){res.render('jdata',{title:'H5 Canvas'});});
+router.get('/div5',function(req,res){res.render('v_div_css5',{title:'H5 Canvas'});});
+router.get('/s_circle',function(req,res){res.render('v_shape_circle',{title:'H5 Canvas'});});
+router.get('/s_star',function(req,res){res.render('v_shape_star',{title:'H5 Canvas'});});
+
+router.post('/postkk',function(req,res){
+
+    console.log(req.headers)
+
+    res.send(
+        {"ok":"222"})
+    });
+
 
 var a=0;
 

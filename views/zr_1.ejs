@@ -5,15 +5,55 @@
     <title>ZRender</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="/zr/js/jquery.js"></script>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
     <script src="/zr/js/esl/esl.js"></script>
-    <link href="/zr/css/bootstrap.css" rel="stylesheet">
-    <link href="/zr/css/bootstrap-responsive.css" rel="stylesheet">
+
 
 </head>
 <body>
-<div id="main"></div>
+<div id="main" style="width: 800px;height: 500px;background-color: palegreen"></div>
 <script>
+    stt=function (zrender) {
+        var zr = zrender.init(document.getElementById('main'));
+
+        zr.clear();
+        var color = require('zrender/tool/color');
+        var colorIdx = 0;
+
+        var shapeX;
+        var CircleShape = require('zrender/shape/Circle');
+// 动画元素
+        shapeX = new CircleShape({
+                style : {
+                    x : 100,
+                    y : 200,
+                    r : 30,
+                    brushType : 'both' ,
+                    color : 'rgba(220, 20, 60, 0.8)',
+                    strokeColor : color.getColor(colorIdx++),
+                    lineWidth : 3
+                },
+                xx : 1,
+                yy : 1,
+                hoverable : false
+            });
+
+            zr.addShape(shapeX);
+
+// 绘画，利用render的callback可以在绘画完成后马上开始动画
+        zr.render(function(){
+            animationTicket = setInterval(
+                    function(){
+                        console.log(shapeX.id)
+                        shapeX.style.x += shapeX.xx;
+                        shapeX.style.y += shapeX.yy;
+                        zr.modShape(shapeX.id, shapeX);
+                        zr.refresh();
+                    },
+                    24)
+        });
+
+    };
     require.config({
         packages: [
             {
@@ -27,64 +67,12 @@
             [
                 'zrender',
                 'zrender/tool/color',
-                'zrender/shape/Sector'
+                'zrender/shape/Circle',
+                'zrender/animation/Animation'
             ],
-            function ( zrender, zrColor, SectorShape) {
-                var zr = zrender.init(document.getElementById('main'));
-                zr.clear();
+            stt
 
-                var data = [10,13,23,8,35,18];
-                var total = 0;
-                for (var i = 0, l = data.length; i < l; i++) {
-                    total += data[i];
-                }
-                var percent;
-                var startAngle = 0;
-                var endAngle;
-                var x = Math.round(zr.getWidth() / 2);
-                var y = Math.round(zr.getHeight() / 2);
-                var r0 = 30;
-                var r = 100;
-
-                for (var i = 0, l = data.length; i < l; i++){
-
-                    console.log(i)
-                    percent = data[i] / total;
-                    endAngle = (percent * 360 + startAngle).toFixed(2) - 0;
-                    percent = (percent * 100).toFixed(2) + '%';
-                    zr.addShape(new SectorShape({
-                        style : {
-                            x : x,          // 圆心横坐标
-                            y : y,          // 圆心纵坐标
-                            r0 : r0,        // 圆环内半径
-                            r : r,          // 圆环外半径
-                            startAngle : startAngle,
-                            endAngle : endAngle,
-                            brushType : 'both',
-                            color : zrColor.getColor(i),
-                            strokeColor : '#fff'
-                        },
-                        highlightStyle : {
-                            text : percent,
-                            textPosition : 'specific',
-                            textX : x,
-                            textY : y,
-                            textAlign : 'center',
-                            textBaseline: 'middle',
-                            textColor : 'blue',
-                            textFont : 'bold 10px verdana'
-                        },
-                        clickable : true,
-                        onclick : function(params) {
-                            alert(params.target.highlightStyle.text);
-                        }
-                    }))
-                    startAngle = endAngle;
-                }
-                zr.render();
-            }
     );
-
 
 </script>
 </body>

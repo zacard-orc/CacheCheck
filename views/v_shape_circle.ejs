@@ -3,53 +3,15 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <title>表格H5测试</title>
+    <title>H5画圆</title>
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
 
 <body>
-<!--
-<style>
-    div
-    {
-        width:100px;
-        height:100px;
-        background:red;
-        animation:myfirst 5s;
-        -moz-animation:myfirst 5s; /* Firefox */
-        -webkit-animation:myfirst 5s; /* Safari and Chrome */
-        -o-animation:myfirst 5s; /* Opera */
-    }
 
-    @keyframes myfirst
-    {
-        from {background:red;}
-        to {background:yellow;}
-    }
-
-    @-moz-keyframes myfirst /* Firefox */
-    {
-        from {background:red;}
-        to {background:yellow;}
-    }
-
-    @-webkit-keyframes myfirst /* Safari and Chrome */
-    {
-        from {background:red;}
-        to {background:yellow;}
-    }
-
-    @-o-keyframes myfirst /* Opera */
-    {
-        from {background:red;}
-        to {background:yellow;}
-    }
-</style>
--->
 <div id="main">
 
 </div>
 
-<!--div>Hello World</div-->
 
 
 <script type="text/javascript">
@@ -94,10 +56,22 @@
         }
     }
 
+    //画圆
+    qr_circle=function(obj,u_size)
+    {
+        var ctx=document.getElementById(obj).getContext("2d");
+
+        ctx.beginPath();
+        ctx.arc(i*1.5,i*1.5,i,0,2*Math.PI);
+        ctx.fillStyle='#000000';
+        ctx.stroke();
+        ctx.fill();
+    }
+
     for(var i=5;i<41;i++)
     {
-        $("#main").append('<a download="'+i+'.png href="#"><canvas id="myCanvas_'+i+'" width="'+i*9+'" height="'+i*9+'"></canvas></a>')
-        qr_stroke('myCanvas_'+i,i,i);
+        $("#main").append('<a download="'+i+'.png href="#"><canvas id="myCanvas_'+i+'" width="'+i*3+'" height="'+i*3+'"></canvas></a>')
+        qr_circle('myCanvas_'+i,i);
     }
 
 

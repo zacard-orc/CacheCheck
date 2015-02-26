@@ -1,0 +1,133 @@
+<!-- blizzard -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>表格H5测试</title>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/div5.css" />
+    <script>
+        mr_circle=function(obj,p,r,c)
+        //对象、坐标、半径、颜色
+        {
+            obj.fillStyle=c;
+            obj.beginPath();
+            obj.arc(p[0]-200,p[1],r,0,Math.PI*2,false); //Math.PI*2是JS计算方法，是圆
+            obj.closePath();
+            obj.fill();
+        }
+
+        getxy=function(obj){
+            var xy=[];
+            var odiv=document.getElementById(obj);
+            xy.push(odiv.getBoundingClientRect().left);
+            xy.push(odiv.getBoundingClientRect().top);
+            return xy;
+        }
+        //起点sp、终点ep、（过程点cp）、总时长total_time、帧数frame_number
+        beizer_1n=function(sp,ep,tt,fn){
+            var path_pix=[];
+            for(var t=0;t<tt;t=t+tt/fn)
+            {
+                var B=[]
+                B[0]=(tt-t)*sp[0]+t*ep[0];
+                B[1]=(tt-t)*sp[1]+t*ep[1];
+                //console.log(B)
+                path_pix.push(B)
+            }
+            // console.log(path_pix)
+            return path_pix
+        }
+
+        beizer_2n=function(sp,cp_1,ep,tt,fn){
+            var path_pix=[];
+            for(var i=0;i<tt;i=i+tt/fn)
+            {
+                var B=[]
+                B[0]=Math.pow((tt-i),2)*sp[0]+2*i*(tt-i)*cp_1[0]+Math.pow(i,2)*ep[0];
+                B[1]=Math.pow((tt-i),2)*sp[1]+2*i*(tt-i)*cp_1[1]+Math.pow(i,2)*ep[1];
+                //console.log(B)
+                path_pix.push(B)
+            }
+            // console.log(path_pix)
+            return path_pix
+        }
+
+        beizer_3n=function(sp,cp_1,cp_2,ep,tt,fn){
+            var path_pix=[];
+            for(var i=0;i<tt;i=i+tt/fn)
+            {
+                var B=[]
+                B[0]=Math.pow(i,0)*Math.pow((tt-i),3)*sp[0]
+                        +3*Math.pow(i,1)*Math.pow((tt-i),2)*cp_1[0]
+                        +3*Math.pow(i,2)*Math.pow((tt-i),1)*cp_2[0]
+                        +3*Math.pow(i,3)*Math.pow((tt-i),0)*ep[0]
+
+                B[1]=Math.pow(i,0)*Math.pow((tt-i),3)*sp[1]
+                        +3*Math.pow(i,1)*Math.pow((tt-i),2)*cp_1[1]
+                        +3*Math.pow(i,2)*Math.pow((tt-i),1)*cp_2[1]
+                        +3*Math.pow(i,3)*Math.pow((tt-i),0)*ep[1]
+
+                path_pix.push(B)
+            }
+            return path_pix
+        }
+    </script>
+</head>
+<body>
+
+<div id="d_bg" style="width: 800px;height: 500px;border: 2px solid #696969;margin-left: 200px">
+    <div id="d_ep" class="end"></div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+      //初始化起点
+      for(var i=0;i<10;i++)
+      {
+          $("#d_bg").append('<div id="run_'+i+'" class="point"></div>')
+          $("#run_"+i).css('left','200px');
+          $("#run_"+i).css('top',i*30+'px');
+      }
+      //初始化增加画布
+      $("#d_bg").append('<div id="d_cvs" class="d_canvas"></div>')
+      $("#d_cvs").append('<canvas id="cvs" width="800px" height="500px"></canvas>')
+
+      //绘制起点-终点路径
+      for(var i=0;i<10;i++)
+      {
+          // console.log(getxy('run_'+i))
+      }
+      p_sp=getxy('run_0');
+      p_ep=getxy('d_ep');
+      console.log(p_sp);
+      console.log(p_ep);
+      var res_path=beizer_3n(p_sp,[200,500],[500,200],p_ep,1,240)
+      console.log(res_path.length)
+
+      //action 路径
+      var x_cvs=document.getElementById("cvs").getContext("2d");
+      var x=4;
+      setInterval(function(){
+          //console.log(x+':'+res_path[x])
+          if(x>=res_path.length-10)
+          {
+              x_cvs.clearRect(0,0,800,500);
+              x=4;
+          } else
+          {
+              x_cvs.clearRect(0,0,800,500);
+              mr_circle(x_cvs,res_path[x-4],10,'rgba(128,2,200,0.3)')
+              mr_circle(x_cvs,res_path[x-2],10,'rgba(128,2,200,0.5)')
+              mr_circle(x_cvs,res_path[x],10,'rgba(128,2,200,1)')
+              x++;
+          }
+      },24)
+
+
+  });
+</script>
+
+</body>
+</html>

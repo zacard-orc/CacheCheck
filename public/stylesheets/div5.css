@@ -1,0 +1,29 @@
+.point {
+    margin : 10px;
+    height : 20px;
+    width : 20px;
+    position : absolute;
+    z-index: 1;
+    border-radius : 100%;
+    background-color : #ee5f5b;  /*点的颜色*/;
+}
+
+.end {
+    margin : 10px;
+    height : 20px;
+    width : 20px;
+    position : absolute;
+    left: 800px;
+    top:300px;
+    z-index: 2;
+    border-radius : 100%;
+    background-color : greenyellow;  /*点的颜色*/;
+}
+
+.d_canvas{
+    z-index:40;
+    background:none;
+    width: 800px;
+    height: 500px;
+    border: 2px solid orangered;
+}
