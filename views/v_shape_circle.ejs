@@ -62,15 +62,15 @@
         var ctx=document.getElementById(obj).getContext("2d");
 
         ctx.beginPath();
-        ctx.arc(i*1.5,i*1.5,i,0,2*Math.PI);
+        ctx.arc(i*1.25,i*1.25,i,0,2*Math.PI);
         ctx.fillStyle='#000000';
         ctx.stroke();
         ctx.fill();
-    }
+    };
 
-    for(var i=5;i<41;i++)
+    for(var i=5;i<21;i++)
     {
-        $("#main").append('<a download="'+i+'.png href="#"><canvas id="myCanvas_'+i+'" width="'+i*3+'" height="'+i*3+'"></canvas></a>')
+        $("#main").append('<a download="'+i+'.png href="#"><canvas id="myCanvas_'+i+'" width="'+i*2.5+'" height="'+i*2.5+'"></canvas></a>')
         qr_circle('myCanvas_'+i,i);
     }
 

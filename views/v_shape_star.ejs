@@ -42,12 +42,15 @@
                             n : n,
                             hoverable:false,
                             lineJoin : 'round',
-                            highlightStyle:false,
                             color : 'rgba(0,0,0,1)',          // rgba supported
                             lineWidth : 0,
                             strokeColor:'#000000',
                             shadowColor:'#000000'
+                        },
+                        highlightStyle:{
+                            lineWidth:0
                         }
+
                     }));
                     zr.render();
                 }
@@ -56,10 +59,10 @@
 
     $(function(){
 
-        for(var i=1;i<25;i++)
+        for(var i=5;i<25;i++)
         {
-            $("#main").append('<div id="dx_'+i+'"style="float:left;width:'+i*5+'px;height:'+i*5+'px;border:px solid #808080"></div>')
-            xzr_load('dx_'+i,'Star',i*2.5,i*2.5,i*2,9)
+            $("#main").append('<div id="dx_'+i+'"style="float:left;width:'+i*2.5+'px;height:'+i*2.5+'px;"></div>')
+            xzr_load('dx_'+i,'Star',i*1.25,i*1.25,i,9)
         }
 
      //   xzr_load('main','Circle',4,4)
