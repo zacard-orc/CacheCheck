@@ -70,11 +70,22 @@
         ctx.fill();
     };
 
-    for(var i=5;i<21;i++)
+    //画方
+    qr_rect=function(obj,u_size)
+    {
+        console.log(u_size)
+        var ctx=document.getElementById(obj).getContext("2d");
+        ctx.rotate(45*Math.PI/180);
+        ctx.translate(u_size,0/2);
+        ctx.fillRect(0,0,u_size,u_size);
+
+    };
+
+    for(var i=1;i<15;i++)
     {
         $("#main").append('<a download="'+i+'.png href="#">' +
                 '<canvas id="myCanvas_'+i+'" width="'+i*2+'" height="'+i*2+'"></canvas></a>')
-        qr_circle('myCanvas_'+i,i);
+        qr_rect('myCanvas_'+i,i);
     }
 
 
