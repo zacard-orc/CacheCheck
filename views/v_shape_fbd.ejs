@@ -6,6 +6,7 @@
     <title>H5画圆</title>
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
 
+</head>
 <body>
 
 <div id="main">
@@ -35,6 +36,7 @@
         console.log(obj)
         var c=document.getElementById(obj);
         var ctx=c.getContext('2d');
+
         ctx.strokeStyle = 'white';
         ctx.fillStyle =fcolor;
         ctx.roundRect(x, y, w, h, r);
@@ -56,25 +58,10 @@
         }
     }
 
-    //画圆
-    qr_circle=function(obj,u_size)
+    for(var i=10;i<21;i++)
     {
-        var ctx=document.getElementById(obj).getContext("2d");
-
-        ctx.beginPath();
-        ctx.arc(i,i,i*0.75,0,2*Math.PI);
-        ctx.strokeStyle="#000000";
-        ctx.lineWidth=0.5;
-        ctx.fillStyle='#000000';
-        ctx.stroke();
-        ctx.fill();
-    };
-
-    for(var i=5;i<21;i++)
-    {
-        $("#main").append('<a download="'+i+'.png href="#">' +
-                '<canvas id="myCanvas_'+i+'" width="'+i*2+'" height="'+i*2+'"></canvas></a>')
-        qr_circle('myCanvas_'+i,i);
+        $("#main").append('<canvas id="myCanvas_'+i+'" width="'+i*9+'" height="'+i*9+'"></canvas>')
+        qr_stroke('myCanvas_'+i,i,10);
     }
 
 

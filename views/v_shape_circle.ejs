@@ -61,6 +61,8 @@
     {
         var ctx=document.getElementById(obj).getContext("2d");
 
+        ctx.fillStyle="#FFFFFF"
+        ctx.fillRect(0,0,u_size*2,u_size*2);
         ctx.beginPath();
         ctx.arc(i,i,i*0.75,0,2*Math.PI);
         ctx.strokeStyle="#000000";
@@ -70,10 +72,10 @@
         ctx.fill();
     };
 
-    for(var i=5;i<21;i++)
+    for(var i=1;i<21;i++)
     {
         $("#main").append('<a download="'+i+'.png href="#">' +
-                '<canvas id="myCanvas_'+i+'" width="'+i*2+'" height="'+i*2+'"></canvas></a>')
+                '<canvas style="background-color: white" id="myCanvas_'+i+'" width="'+i*2+'" height="'+i*2+'"></canvas></a>')
         qr_circle('myCanvas_'+i,i);
     }
 
