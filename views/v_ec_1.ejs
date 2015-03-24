@@ -5,10 +5,192 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>ECHARTS</title>
     <script src='/javascripts/jquery-1.11.1.min.js'></script>
-    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script src="/build/echarts.js"></script>
 </head>
 <body>
+<div id="main" style="font-family:'Microsoft YaHei';width: 1000px;height: 600px;border: solid 2px #808080;
+margin-left: 200px">
+
+</div>
+<script src="/javascripts/ec_placelist.js"></script>
+<script type="text/javascript">
+    require.config({
+        paths: {
+            echarts: '/build'
+        }
+    });
+
+    require(
+            [
+                'echarts',
+                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/map' // 使用柱状图就加载bar模块，按需加载
+
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main'));
 
 
+
+                option = {
+                    backgroundColor: '#ADD8E6',
+
+                    title : {
+                        text: '大规模MarkPoint特效',
+                        x:'center',
+                        textStyle : {
+                            color: '#000'
+                        }
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        showDelay: 0,
+                        transitionDuration: 0.1,
+                        formatter : function (params) {
+                            //console.log(params)
+                            var value = params.value + '';
+                            //value = value.replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+                            return params.seriesName + '<br/>' + params.name+':'+value + ' %fff';
+                        },
+                        textStyle:{
+                            fontFamily:'Microsoft YaHei',
+                            fontSize:12
+                        }
+                    },
+                    roamController: {
+                        show: true,
+                        x: 'right',
+                        mapTypeControl: {
+                            'world': true
+                        }
+                    },
+                    dataRange: {
+                        min: 0,
+                        max: 100,
+                        x: 'left',
+                        y: 'bottom',
+                        text:['高','低'],           // 文本，默认为数值文本
+                        color: ['#ff3333', 'orange', 'yellow','lime','aqua'],
+                        calculable : true
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x:'left',
+                        data:['弱'],
+                        textStyle : {
+                            color: '#fff'
+                        }
+                    },
+                    series : [
+                        {
+                            roam:'true',
+                            name: 'pm2.5',
+                            type: 'map',
+                            mapType: 'world',
+                            mapLocation:{x:'center',y:'40px'},
+                            itemStyle:{
+                                normal:{
+                                    borderColor:'rgba(222,222,222,1)',
+                                    borderWidth:0.5,
+                                    label:{show:true},
+                                    areaStyle:{
+                                        color: '#FFFACD'
+                                    }
+                                },
+                                emphasis:{label:{show:true}}
+                            },
+                            data : [
+                                {name:'包头',value:10},
+                                {name:'昆明',value:10},
+                                {name:'广州',value:10},
+                                {name:'郑州',value:10},
+                                {name:'长春',value:10},
+                                {name:'重庆',value:10},
+                                {name:'长沙',value:10},
+                                {name:'北京',value:10},
+                                {name:'丹东',value:10},
+                                {name:'大连',value:10}
+                            ],
+                            markPoint : {
+                                symbolSize: 3,
+                                symbol:'pin',
+                                itemStyle:{
+                                    normal:{
+                                        label:{show:false}
+                                    }
+                                },
+                                data : [
+                                    {name:'包头',value:10},
+                                    {name:'昆明',value:10},
+                                    {name:'广州',value:10},
+                                    {name:'郑州',value:10},
+                                    {name:'长春',value:10},
+                                    {name:'重庆',value:10},
+                                    {name:'长沙',value:10},
+                                    {name:'北京',value:10},
+                                    {name:'丹东',value:10},
+                                    {name:'大连',value:10}
+                                ]
+                            },
+                            geoCoord:placeList
+                        },
+                        {
+                            roam:'true',
+                            name: '弱',
+                            type: 'map',
+                            mapType: 'world',
+                            mapLocation:{x:'center',y:'40px'},
+                            itemStyle:{
+                                normal:{
+                                    borderColor:'rgba(222,222,222,1)',
+                                    borderWidth:0.5,
+                                    label:{show:true},
+                                    areaStyle:{
+                                        color: '#FFFACD'
+                                    }
+                                },
+                                emphasis:{label:{show:true}}
+                            },
+                            data : [],
+                            markPoint : {
+                                symbol:'circle',
+                                symbolSize : function (v){
+                                    return 1 + v/15
+                                },
+                                effect : {
+                                    show: true,
+                                    shadowBlur : 1
+                                },
+                                itemStyle:{
+                                    normal:{
+                                        label:{show:false}
+                                    },
+                                    emphasis: {
+                                        label:{position:'top'}
+                                    }
+                                },
+                                data : [
+                                    {name:'上海',value:95},
+                                    {name:'广州',value:90},
+                                    {name:'大连',value:80},
+                                    {name:'南宁',value:70},
+                                    {name:'南昌',value:60},
+                                    {name:'拉萨',value:50},
+                                    {name:'长春',value:40},
+                                    {name:'包头',value:30},
+                                    {name:'重庆',value:20},
+                                    {name:'常州',value:10}
+                                ]
+                            },
+                            geoCoord:placeList
+                        }
+                    ]
+                };
+                // 为echarts对象加载数据
+                myChart.setOption(option);
+            }
+    );
+</script>
 </body>
 </html>
