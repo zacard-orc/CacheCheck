@@ -31,6 +31,7 @@ router.get('/s_fbd',function(req,res){res.render('v_shape_fbd',{title:'H5 Canvas
 router.get('/s_r_rect',function(req,res){res.render('v_shape_rotate_rect',{title:'H5 Canvas'});});
 router.get('/s_star',function(req,res){res.render('v_shape_star',{title:'H5 Canvas'});});
 router.get('/s_ec',function(req,res){res.render('v_ec_1',{title:'H5 Canvas'});});
+router.get('/s_map',function(req,res){res.render('v_map',{});});
 
 router.post('/postkk',function(req,res){
 
