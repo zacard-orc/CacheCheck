@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>H5画圆</title>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+
+<body>
+
+<div id="main">
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+        //if (w < 2 * r) r = w / 2;
+        //if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x+r, y);
+        this.arcTo(x+w, y, x+w, y+h, r);
+        this.arcTo(x+w, y+h, x, y+h, r);
+        this.arcTo(x, y+h, x, y, r);
+        this.arcTo(x, y, x+w, y, r);
+        // this.arcTo(x+r, y);
+        this.closePath();
+        return this;
+    }
+
+    //对象，起点X，起点Y,长宽步长, 弧度,填充色
+    qr_base=function(obj,x, y, w, h, r,fcolor){
+        console.log(obj)
+        var c=document.getElementById(obj);
+        var ctx=c.getContext('2d');
+        ctx.strokeStyle = 'white';
+        ctx.fillStyle =fcolor;
+        ctx.roundRect(x, y, w, h, r);
+        ctx.fill();
+        ctx.stroke();
+    };
+
+    //画圆角QR禁区符号|CANVAS对象，长度，弧度
+    qr_stroke=function(obj,u_size,rads)
+    {
+        console.log(obj);
+        for(var i=0;i<4;i++)
+        {
+            console.log(i)
+            if (i%2==0)
+                qr_base(obj,i*u_size,i*u_size,u_size*9-i*u_size*2,u_size*9-i*u_size*2,rads--,'white')
+            else
+                qr_base(obj,i*u_size,i*u_size,u_size*9-i*u_size*2,u_size*9-i*u_size*2,rads--,'black')
+        }
+    }
+
+    //画圆
+    qr_circle=function(obj,u_size)
+    {
+        var ctx=document.getElementById(obj).getContext("2d");
+
+        ctx.fillStyle="#FFFFFF"
+        ctx.fillRect(0,0,u_size*2,u_size*2);
+        ctx.beginPath();
+        ctx.arc(10,10,5,0,2*Math.PI);
+        ctx.fillStyle='#000000';
+        ctx.stroke();
+        ctx.fill();
+    };
+
+    /*
+    for(var i=1;i<10;i++)
+    {
+        $("#main").append('<a download="'+i+'.png href="#">' +
+                '<canvas ' +
+                'id="myCanvas_'+i+'" width="'+i*2+'" height="'+i*2+'"></canvas></a>')
+        qr_circle('myCanvas_'+i,i);
+    }
+    */
+    $("#main").append('<a download="10.png href="#">' +
+            '<canvas ' +
+            'id="myCanvas_1" width="20px" height="20px"></canvas></a>')
+    qr_circle('myCanvas_1',10);
+
+
+
+
+</script>
+
+<%- include footer%>

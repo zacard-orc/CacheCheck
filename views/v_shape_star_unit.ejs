@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ZRender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
+    <script src="/zr/js/esl/esl.js"></script>
+
+
+</head>
+<body>
+<div id="main" style="float: left;width: 1000px;height: 1000px"></div>
+<script>
+    xzr_load=function(obj,p_shape,x,y,m,n){
+        require.config({
+            packages: [
+                {
+                    name: 'zrender',
+                    location: './zrender/src',
+                    main: 'zrender'
+                }
+            ]
+        });
+        require(
+                [
+                    'zrender',
+                    'zrender/tool/color',
+                    'zrender/shape/Circle',
+                    'zrender/shape/Star'
+                ],
+                function (zrender) {
+                    var zr = zrender.init(document.getElementById(obj));
+                    var XShape = require('zrender/shape/'+p_shape);
+
+                    zr.addShape(new XShape({
+                        style : {
+                            x : x,
+                            y : y,
+                            r : m,
+                            /*
+                            width : m,
+                            height: n,
+                            */
+                            hoverable:false,
+                            lineJoin : 'round',
+                            color : 'rgba(0,0,0,1)',          // rgba supported
+                            lineWidth : 0,
+                            strokeColor:'#ffffff',
+                            shadowColor:'#ffffff'
+                        },
+                        highlightStyle:{
+                            lineWidth:0
+                        }
+
+                    }));
+                    zr.render();
+                }
+        );
+    }
+
+    $(function(){
+
+
+        for(var i=1;i<5;i=i+1)
+        {
+            $("#main").append('<div id="dx_'+i+'"style="float:left;width:20px;height:20px;"></div>')
+            //id,type,x,y,r,n
+            /*
+             Name	Type	Argument	Default	Description
+             x	number	  圆心x坐标
+             y	number	  圆心y坐标
+             r	number	  半径
+             */
+            xzr_load('dx_'+i,'Circle',10,10,i)
+        }
+
+
+
+        //   xzr_load('main','Circle',4,4)
+        //  xzr_load('dx_5','Circle',4,4)
+
+
+    });
+
+
+</script>
+</body>
+</html>
